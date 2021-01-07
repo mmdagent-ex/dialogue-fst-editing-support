@@ -1,0 +1,30 @@
+{
+    "name": "dialogue-fst-editing-support",
+    "displayName": "Dialogue FST editing support",
+    "description": "Supports .fst file editing for MMDAgent-EX.",
+    "version": "1.0.0",
+    "publisher": "MMDAgent-EX",
+    "engines": {
+        "vscode": "^1.52.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "main": "./extension.js",
+    "activationEvents": [
+      "onLanguage:fst"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "fst",
+            "aliases": ["fst", "fst"],
+            "extensions": [".fst"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "fst",
+            "scopeName": "source.fst",
+            "path": "./syntaxes/fst.tmLanguage.json"
+        }]
+    }
+}

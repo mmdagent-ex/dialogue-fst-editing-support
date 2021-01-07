@@ -1,0 +1,132 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "fst",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#variables"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#line_comment"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#numbers_block"
+		},
+		{
+			"include": "#command"
+		},
+		{
+			"include": "#regexp"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "constant.language.NULL.fst",
+				"match": "(\\<eps\\>)"
+			}]
+		},
+		"variables": {
+			"patterns": [{
+				"name": "variable.parameter.fst",
+				"match": "(\\$\\{.+?\\})"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.fst",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.fst",
+					"match": "\\\\."
+				}
+			]
+		},
+		"line_comment": {
+			"patterns": [
+				{
+					"begin": "(^[ \\t]+)?(?=#)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.whitespace.comment.leading.fst"
+						}
+					},
+					"end": "(?!\\G)",
+					"patterns": [
+						{
+							"begin": "#",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.definition.comment.fst"
+								}
+							},
+							"end": "\\n",
+							"name": "comment.line.number-sign.fst"
+						}
+					]
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [
+				{
+					"match": "(^[0-9]+)[ \\t]+([0-9]+)[ \\t](\\S*)",
+					"captures": {
+						"1": {
+							"name": "entity.name.function.definition.fst"
+						},
+						"2": {
+							"name": "entity.name.function.definition.fst"
+						},
+						"3": {
+							"name": "entity.name.type.fst"
+						}
+					}
+				}
+			]
+      },
+		"numbers_block": {
+			"patterns": [
+				{
+					"match": "(^\\d+)\\s+(\\d+):",
+					"captures": {
+						"1": {
+							"name": "entity.name.function.definition.fst"
+						},
+						"2": {
+							"name": "entity.name.function.definition.fst"
+						}
+					}
+				}
+			]
+      },
+		"command": {
+			"patterns": [
+				{
+					"match": "^[\\d\\s]+(\\S+)",
+					"captures": {
+						"1": {
+							"name": "entity.name.type.fst"
+						}
+					}
+				}
+			]
+      },
+      "regexp": {
+			"patterns": [{
+				"name": "string.regexp.fst",
+				"match": "(@.*?@)"
+			}]
+		}
+	},
+	"scopeName": "source.fst"
+}
