@@ -11,7 +11,7 @@ This package supports .fst file editing for [MMDAgent-EX](https://mmdagent-ex.de
 
 For example if there is an image subfolder under your extension project workspace:
 
-![snapshot](images/snap-1.0.0.png)
+![snapshot](https://raw.githubusercontent.com/lee-lab/dialogue-fst-editing-support/main/images/snap-1.0.0.png)
 
 ## Requirements
 

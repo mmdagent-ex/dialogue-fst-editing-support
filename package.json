@@ -2,11 +2,13 @@
     "name": "dialogue-fst-editing-support",
     "displayName": "Dialogue FST editing support",
     "description": "Supports .fst file editing for MMDAgent-EX.",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "publisher": "MMDAgent-EX",
+    "icon": "images/icon.png",
     "engines": {
         "vscode": "^1.52.0"
     },
+    "license": "SEE LICENSE",
     "categories": [
         "Programming Languages"
     ],
@@ -26,5 +28,10 @@
             "scopeName": "source.fst",
             "path": "./syntaxes/fst.tmLanguage.json"
         }]
-    }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lee-lab/dialogue-fst-editing-support"
+    },
+    "homepage": "https://github.com/lee-lab/dialogue-fst-editing-support/blob/main/README.md"
 }
