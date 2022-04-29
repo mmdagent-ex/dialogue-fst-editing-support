@@ -25,6 +25,9 @@
 		},
 		{
 			"include": "#regexp"
+		},
+		{
+			"include": "#files"
 		}
 	],
 	"repository": {
@@ -79,7 +82,7 @@
 		"numbers": {
 			"patterns": [
 				{
-					"match": "(^[0-9]+)[ \\t]+([0-9]+)[ \\t](\\S*)",
+					"match": "(^[0-9]+)[ \\t]+([0-9]+)[ \\t]+(\\S*)",
 					"captures": {
 						"1": {
 							"name": "entity.name.function.definition.fst"
@@ -93,11 +96,11 @@
 					}
 				}
 			]
-      },
+		},
 		"numbers_block": {
 			"patterns": [
 				{
-					"match": "(^\\d+)\\s+(\\d+):",
+					"match": "(^\\d+)\\s+(\\d+)?",
 					"captures": {
 						"1": {
 							"name": "entity.name.function.definition.fst"
@@ -108,7 +111,7 @@
 					}
 				}
 			]
-      },
+		},
 		"command": {
 			"patterns": [
 				{
@@ -120,12 +123,24 @@
 					}
 				}
 			]
-      },
-      "regexp": {
+		},
+		"regexp": {
 			"patterns": [{
 				"name": "string.regexp.fst",
 				"match": "(@.*?@)"
 			}]
+		},
+		"files": {
+			"patterns": [
+				{
+					"match": "\\|([^\\*\\?\\|]+\\.[A-Za-z0-9]+)",
+					"captures": {
+						"1": {
+							"name": "string.unquoted.fst"
+						}
+					}
+				}
+			]
 		}
 	},
 	"scopeName": "source.fst"
