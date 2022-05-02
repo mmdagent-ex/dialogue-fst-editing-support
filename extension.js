@@ -39,10 +39,7 @@ class FstCompletionItemProvider {
             {label: 'BUTTON_EVENT_ADD', kind: vscode.CompletionItemKind.Event},
             {label: 'BUTTON_EVENT_EXEC', kind: vscode.CompletionItemKind.Event},
             {label: 'BUTTON_EVENT_DELETE', kind: vscode.CompletionItemKind.Event},
-            {label: 'MENU_EVENT|ADD', kind: vscode.CompletionItemKind.Event},
-            {label: 'MENU_EVENT|DELETE', kind: vscode.CompletionItemKind.Event},
-            {label: 'MENU_EVENT|SETITEM', kind: vscode.CompletionItemKind.Event},
-            {label: 'MENU_EVENT|DELETEITEM', kind: vscode.CompletionItemKind.Event},
+            {label: 'MENU_EVENT', kind: vscode.CompletionItemKind.Event},
             {label: 'PROMPT_EVENT_SELECTED', kind: vscode.CompletionItemKind.Event},
             {label: 'INFOTEXT_EVENT_SHOW', kind: vscode.CompletionItemKind.Event},
             {label: 'INFOTEXT_EVENT_CLOSE', kind: vscode.CompletionItemKind.Event},
@@ -51,10 +48,7 @@ class FstCompletionItemProvider {
             {label: 'RECOG_EVENT_OVERFLOW', kind: vscode.CompletionItemKind.Event},
             {label: 'RECOG_EVENT_GMM', kind: vscode.CompletionItemKind.Event},
             {label: 'RECOG_EVENT_AWAY', kind: vscode.CompletionItemKind.Event},
-            {label: 'RECOG_EVENT_MODIFY|GAIN', kind: vscode.CompletionItemKind.Event},
-            {label: 'RECOG_EVENT_MODIFY|USERDICT_SET', kind: vscode.CompletionItemKind.Event},
-            {label: 'RECOG_EVENT_MODIFY|USERDICT_UNSET', kind: vscode.CompletionItemKind.Event},
-            {label: 'RECOG_EVENT_MODIFY|CHANGE_CONF', kind: vscode.CompletionItemKind.Event},
+            {label: 'RECOG_EVENT_MODIFY', kind: vscode.CompletionItemKind.Event},
             {label: 'SYNTH_EVENT_START', kind: vscode.CompletionItemKind.Event},
             {label: 'SYNTH_EVENT_STOP', kind: vscode.CompletionItemKind.Event},
             {label: 'SOUND_EVENT_START', kind: vscode.CompletionItemKind.Event},
@@ -71,14 +65,10 @@ class FstCompletionItemProvider {
             {label: 'NETWORK_EVENT_GET', kind: vscode.CompletionItemKind.Event},
             {label: 'CURRENT_TIME', kind: vscode.CompletionItemKind.Event},
             {label: 'TAPPED', kind: vscode.CompletionItemKind.Event},
-            {label: 'KAFKA_EVENT_CONNECTED', kind: vscode.CompletionItemKind.Event},
-            {label: 'KAFKA_EVENT_DISCONNECTED', kind: vscode.CompletionItemKind.Event},
             {label: 'REMOTE_EVENT_CONNECTED', kind: vscode.CompletionItemKind.Event},
             {label: 'REMOTE_EVENT_DISCONNECTED', kind: vscode.CompletionItemKind.Event},
-            {label: 'AVATAR|START', kind: vscode.CompletionItemKind.Event},
-            {label: 'AVATAR|END', kind: vscode.CompletionItemKind.Event},
-            {label: 'AVATAR_EVENT_CONTROL|DISABLED', kind: vscode.CompletionItemKind.Event},
-            {label: 'AVATAR_EVENT_CONTROL|ENABLED', kind: vscode.CompletionItemKind.Event}
+            {label: 'AVATAR', kind: vscode.CompletionItemKind.Event},
+            {label: 'AVATAR_EVENT_CONTROL', kind: vscode.CompletionItemKind.Event}
          ];
          const completionItemsCommand = [
            {label: 'MODEL_ADD', kind: vscode.CompletionItemKind.Method, documentation: 'hoge'},
@@ -116,17 +106,11 @@ class FstCompletionItemProvider {
            {label: 'RECOG_RECORD_STOP', kind: vscode.CompletionItemKind.Method},
            {label: 'BUTTON_ADD', kind: vscode.CompletionItemKind.Method},
            {label: 'BUTTON_DELETE', kind: vscode.CompletionItemKind.Method},
-           {label: 'MENU|ADD', kind: vscode.CompletionItemKind.Method},
-           {label: 'MENU|DELETE', kind: vscode.CompletionItemKind.Method},
-           {label: 'MENU|SETITEM', kind: vscode.CompletionItemKind.Method},
-           {label: 'MENU|DELETEITEM', kind: vscode.CompletionItemKind.Method},
+           {label: 'MENU', kind: vscode.CompletionItemKind.Method},
            {label: 'PROMPT_SHOW', kind: vscode.CompletionItemKind.Method},
            {label: 'INFOTEXT_FILE', kind: vscode.CompletionItemKind.Method},
            {label: 'INFOTEXT_STRING', kind: vscode.CompletionItemKind.Method},
-           {label: 'RECOG_MODIFY|GAIN', kind: vscode.CompletionItemKind.Method},
-           {label: 'RECOG_MODIFY|CHANGE_CONF', kind: vscode.CompletionItemKind.Method},
-           {label: 'RECOG_MODIFY|USERDICT_SET', kind: vscode.CompletionItemKind.Method},
-           {label: 'RECOG_MODIFY|USERDICT_UNSET', kind: vscode.CompletionItemKind.Method},
+           {label: 'RECOG_MODIFY', kind: vscode.CompletionItemKind.Method},
            {label: 'SYNTH_START', kind: vscode.CompletionItemKind.Method},
            {label: 'SYNTH_STOP', kind: vscode.CompletionItemKind.Method},
            {label: 'SOUND_START', kind: vscode.CompletionItemKind.Method},
@@ -143,8 +127,7 @@ class FstCompletionItemProvider {
            {label: 'TEXTAREA_SET', kind: vscode.CompletionItemKind.Method},
            {label: 'TEXTAREA_DELETE', kind: vscode.CompletionItemKind.Method},
            {label: 'NETWORK_GET', kind: vscode.CompletionItemKind.Method},
-           {label: 'AVATAR_CONTROL|ENABLE', kind: vscode.CompletionItemKind.Method},
-           {label: 'AVATAR_CONTROL|DISABLE', kind: vscode.CompletionItemKind.Method}
+           {label: 'AVATAR_CONTROL', kind: vscode.CompletionItemKind.Method}
        ];
        const completionItemsEps = [
            {label: 'eps>', kind: vscode.CompletionItemKind.Interface}
@@ -172,127 +155,127 @@ class FstSignatureHelpProvider {
       const commandList = [
          {
             name  : "MODEL_EVENT_ADD",
-            label : "MODEL_EVENT_ADD|model",
+            label : "MODEL_EVENT_ADD|model alias",
             doc   : "Event issued when a 3D model was added." 
          },
          {
             name  : "MODEL_EVENT_CHANGE",
-            label : "MODEL_EVENT_CHANGE|model",
+            label : "MODEL_EVENT_CHANGE|model alias",
             doc   : "Event issued when a 3D model was changed." 
          },
          {
             name  : "MODEL_EVENT_DELETE",
-            label : "MODEL_EVENT_DELETE|model",
+            label : "MODEL_EVENT_DELETE|model alias",
             doc   : "Event issued when a 3D model was deleted from scene." 
          },
          {
             name  : "MODEL_EVENT_SELECT",
-            label : "MODEL_EVENT_SELECT|model",
+            label : "MODEL_EVENT_SELECT|model alias",
             doc   : "Event issued when a 3D model is selected by double-tap."
          },
          {
             name  : "MODEL_EVENT_BINDBONE",
-            label : "MODEL_EVENT_BINDBONE|model|boneName",
+            label : "MODEL_EVENT_BINDBONE|model alias|bone name",
             doc   : "Event issued when MODEL_BINDBONE was successfully finished."
          },
          {
             name  : "MODEL_EVENT_BINDFACE",
-            label : "MODEL_EVENT_BINDFACE|model|faceName",
+            label : "MODEL_EVENT_BINDFACE|model alias|face name",
             doc   : "Event issued when MODEL_BINDFACE was successfully finished."
          },
          {
             name  : "MODEL_EVENT_UNBINDBONE",
-            label : "MODEL_EVENT_UNBINDBONE|model|boneName",
+            label : "MODEL_EVENT_UNBINDBONE|model alias|bone name",
             doc   : "Event issued when MODEL_UNBINDBONE was successfully finished."
          },
          {
             name  : "MODEL_EVENT_UNBINDFACE",
-            label : "MODEL_EVENT_UNBINDFACE|model|faceName",
+            label : "MODEL_EVENT_UNBINDFACE|model alias|face name",
             doc   : "Event issued when MODEL_UNBINDFACE was successfully finished."
          },
          {
             name  : "MOTION_EVENT_ADD",
-            label : "MOTION_EVENT_ADD|model|motion",
+            label : "MOTION_EVENT_ADD|model alias|motion alias",
             doc   : "Event issued when a motion was newly added and started on the model."
          },
          {
             name  : "MOTION_EVENT_CHANGE",
-            label : "MOTION_EVENT_CHANGE|model|motion",
+            label : "MOTION_EVENT_CHANGE|model alias|motion alias",
             doc   : "Event issued when a playing motion was changed."
          },
          {
             name  : "MOTION_EVENT_ACCELERATE",
-            label : "MOTION_EVENT_ACCELERATE|model|motion",
+            label : "MOTION_EVENT_ACCELERATE|model alias|motion alias",
             doc   : "Event issued when a motion's accelleration was assigned by MOTION_ACCELERATE."
          },
          {
             name  : "MOTION_EVENT_RESET",
-            label : "MOTION_EVENT_RESET|model|motion",
+            label : "MOTION_EVENT_RESET|model alias|motion alias",
             doc   : "Event issued when a motion was resetted and restarted."
          },
          {
             name  : "MOTION_EVENT_DELETE",
-            label : "MOTION_EVENT_DELETE|model|motion",
+            label : "MOTION_EVENT_DELETE|model alias|motion alias",
             doc   : "Event issued when a motion was deleted by finished playing or deletion command."
          },
          {
             name  : "MOTION_EVENT_CONFIGURE",
-            label : "MOTION_EVENT_CONFIGURE|model|motion",
+            label : "MOTION_EVENT_CONFIGURE|model alias|motion alias",
             doc  :  "Event issued when a motion's blending mode was changed by MOTION_CONFIGURE."
          },
          {
             name  : "MOVE_EVENT_START",
-            label : "MOVE_EVENT_START|model",
+            label : "MOVE_EVENT_START|model alias",
             doc  :  "Event issued when a 3D model starts moving by MOVE_START."
          },
          {
             name  : "MOVE_EVENT_STOP",
-            label : "MOVE_EVENT_STOP|model",
-            doc  :  "Event issued when a 3D model finished movement triggered by MOVE_START."
+            label : "MOVE_EVENT_STOP|model alias",
+            doc  :  "Event issued when a 3D model finished movement triggered by MOVE_START (reached end or forced to stop by MOVE_STOP)."
          },
          {
             name  : "TURN_EVENT_START",
-            label : "TURN_EVENT_START|model",
+            label : "TURN_EVENT_START|model alias",
             doc   : "Event issued when a 3D model starts turning by TURN_START."
          },
          {
             name  : "TURN_EVENT_STOP",
-            label : "TURN_EVENT_STOP|model",
+            label : "TURN_EVENT_STOP|model alias",
             doc   : "Event issued when a 3D model finished turning triggered by TURN_START."
          },
          {
             name  : "ROTATE_EVENT_START",
-            label : "ROTATE_EVENT_START|model",
+            label : "ROTATE_EVENT_START|model alias",
             doc   : "Event issued when a 3D model starts rotating by ROTATE_START."
          },
          {
             name  : "ROTATE_EVENT_STOP",
-            label : "ROTATE_EVENT_STOP|model",
+            label : "ROTATE_EVENT_STOP|model alias",
             doc  :  "Event issued when a 3D model finished rotation issued by ROTATE_START."
          },
          {
             name  : "LIPSYNC_EVENT_START",
-            label : "LIPSYNC_EVENT_START|model",
+            label : "LIPSYNC_EVENT_START|mode aliasl",
             doc   : "Event issued when a 3D model started lip syncing by LIPSYNC_START."
          },
          {
             name  : "LIPSYNC_EVENT_STOP",
-            label : "LIPSYNC_EVENT_STOP|model",
+            label : "LIPSYNC_EVENT_STOP|model alias",
             doc  :  "Event issued when finished playing a lip syncing started by LIPSYNC_START."
          },
          {
             name  : "PLUGIN_EVENT_ENABLE",
-            label : "PLUGIN_EVENT_ENABLE|pluginName",
+            label : "PLUGIN_EVENT_ENABLE|plugin name",
             doc   : "Event issued when a plug-in started working."
          },
          {
             name  : "PLUGIN_EVENT_DISABLE",
-            label : "PLUGIN_EVENT_DISABLE|pluginName",
+            label : "PLUGIN_EVENT_DISABLE|plugin name",
             doc   : "Event issued when a plug-in stopped working."
          },
          {
             name  : "DRAGANDDROP",
-            label : "DRAGANDDROP|file",
+            label : "DRAGANDDROP|file path",
             doc   : "Event issued when a file was dropped to the window by user."
          },
          {
@@ -312,22 +295,22 @@ class FstSignatureHelpProvider {
          },
          {
             name  : "BUTTON_EVENT_ADD",
-            label : "BUTTON_EVENT_ADD|button",
+            label : "BUTTON_EVENT_ADD|button alias",
             doc   : "Event issued when the button being added by BUTTON_ADD becomes shown and active on screen."
          },
          {
             name  : "BUTTON_EVENT_EXEC",
-            label : "BUTTON_EVENT_EXEC|button",
+            label : "BUTTON_EVENT_EXEC|button alias",
             doc   : "Event issued when user tapped the button."
          },
          {
             name  : "BUTTON_EVENT_DELETE",
-            label : "BUTTON_EVENT_DELETE|button",
+            label : "BUTTON_EVENT_DELETE|button alias",
             doc  :  "Event issued when the button was deleted by tap action or BUTTON_DELETE."
          },
          {
             name  : "MENU_EVENT",
-            label : "MENU_EVENT|ADD or DELETE or SETITEM or DELETEITEM|aliasName|(id)",
+            label : "MENU_EVENT|ADD or DELETE or SETITEM or DELETEITEM|menu alias|(id)",
             doc  : "Event issued when a menu was changed by MENU command."
          },
          {
@@ -342,7 +325,7 @@ class FstSignatureHelpProvider {
          },
          {
             name  : "INFOTEXT_EVENT_CLOSE",
-            label : "INFOTEXT_EVENT_CLOSE|selectedButtonLabel",
+            label : "INFOTEXT_EVENT_CLOSE|selected button label string",
             doc   : "Event issued when a full-screen document was closed by user tapping one of the button.  The selectedButtonLabel is the label of the button user has tapped."
          },
          {
@@ -362,7 +345,7 @@ class FstSignatureHelpProvider {
          },
          {
             name  : "RECOG_EVENT_GMM",
-            label : "RECOG_EVENT_GMM|gmm_name",
+            label : "RECOG_EVENT_GMM|gmm name",
             doc   : "When GMM audio identification is enabled, gives identification result with the name of the GMM model.  Will be issued just before RECOG_EVENT_STOP. (Plugin_Julius or equivalent)"
          },
          {
@@ -372,77 +355,77 @@ class FstSignatureHelpProvider {
          },
          {
             name  : "RECOG_EVENT_MODIFY",
-            label : "RECOG_EVENT_MODIFY|GAIN or USERDICT_SET or USERDICT_UNSET or CHANGE_CONF|(confName)",
+            label : "RECOG_EVENT_MODIFY|GAIN or USERDICT_SET or USERDICT_UNSET or CHANGE_CONF|(config name)",
             doc   : "Event issued when configuration was changed by RECOG_MODIFY.  \"confName\" is valid for CHANGE_CONF only.  (Plugin_Julius or equivalent)"
          },
          {
             name  : "SYNTH_EVENT_START",
-            label : "SYNTH_EVENT_START|model",
+            label : "SYNTH_EVENT_START|model alias",
             doc   : "Event issued when a model starts talking by speech synthesis. (Plugin_Open_JTalk or equivalent)"
          },
          {
             name  : "SYNTH_EVENT_STOP",
-            label : "SYNTH_EVENT_STOP",
+            label : "SYNTH_EVENT_STOP|model alias",
             doc   : "Event issued when a model finished talking by speech synthesis. (Plugin_Open_JTalk or equivalent)"
          },
          {
             name  : "SOUND_EVENT_START",
-            label : "SOUND_EVENT_START|sound",
+            label : "SOUND_EVENT_START|sound alias",
             doc   : "Event issued when a sound starts playing by SOUND_START (Plugin_Audio)."
          },
          {
             name  : "SOUND_EVENT_STOP",
-            label : "SOUND_EVENT_STOP|sound",
+            label : "SOUND_EVENT_STOP|sound alias",
             doc   : "Event issued when a sound being played by SOUND_START finished playing. (Plugin_Audio)"
          },
          {
             name  : "VALUE_EVENT_SET",
-            label : "VALUE_EVENT_SET|variable",
+            label : "VALUE_EVENT_SET|variable name",
             doc   : "Event issued when a value was set to the variable name by VALUE_SET. (Plugin_Variables)"
          },
          {
             name  : "VALUE_EVENT_UNSET",
-            label : "VALUE_EVENT_UNSET|variable",
+            label : "VALUE_EVENT_UNSET|variable name",
             doc   : "Event issued when the variable was unset by VALUE_UNSET. (Plugin_Variables)"
          },
          {
             name  : "VALUE_EVENT_EVAL",
-            label : "VALUE_EVENT_EVAL|variable|EQ or NE or LE or LT or GE or GT|value|TRUE or FALSE",
+            label : "VALUE_EVENT_EVAL|variable name|EQ or NE or LE or LT or GE or GT|value|TRUE or FALSE",
             doc   : "Tells result of VALUE_EVAL.  The arguments will \"value\" is the evaluated equation itself, and the final argument shows the result. (Plugin_Variables)"
          },
          {
             name  : "TIMER_EVENT_START",
-            label : "TIMER_EVENT_START|variable",
+            label : "TIMER_EVENT_START|variable name",
             doc   : "Event issued when a value is set to the timer variable and starts. (Plugin_Variables)"
          },
          {
             name  : "TIMER_EVENT_STOP",
-            label : "TIMER_EVENT_STOP|variable",
+            label : "TIMER_EVENT_STOP|variable name",
             doc   : "Event issued when a timer variable's count down value has reached 0. (Plugin_Variables)"
          },
          {
             name  : "TIMER_EVENT_CANCELLED",
-            label : "TIMER_EVENT_CANCELLED|variable",
+            label : "TIMER_EVENT_CANCELLED|variable name",
             doc  : "Event issued when a count down has been cancelled before reaching 0 due to unset or setting another value. (Plugin_Variables)"
          },
          {
             name  : "TEXTAREA_EVENT_ADD",
-            label : "TEXTAREA_EVENT_ADD|textareaName",
+            label : "TEXTAREA_EVENT_ADD|textarea name",
             doc  : "Event issued when a TEXTAREA has been added by TEXTAREA_ADD. (Plugin_TextArea)"
          },
          {
             name  : "TEXTAREA_EVENT_SET",
-            label : "TEXTAREA_EVENT_SET|textareaName",
+            label : "TEXTAREA_EVENT_SET|textarea name",
             doc   : "Event issued when a TEXTAREA was assigned a text by TEXTAREA_SET. (Plugin_TextArea)"
          },
          {
             name  : "TEXTAREA_EVENT_DELETE",
-            label : "TEXTAREA_EVENT_DELETE|textareaName",
+            label : "TEXTAREA_EVENT_DELETE|textarea name",
             doc  : "Event issued when a TEXTAREA was deleted. (Plugin_TextArea)"
          },
          {
             name  : "NETWORK_EVENT_GET",
-            label : "NETWORK_EVENT_GET|networkGetName",
+            label : "NETWORK_EVENT_GET|network get alias",
             doc   : "Event issued when fetching a URL to file issued by NETWORK_GET has finished. (Plugin_Network)"
          },
          {
@@ -456,56 +439,310 @@ class FstSignatureHelpProvider {
             doc   : "Event issued when a user tapped a screen at the position."
          },
          {
-            name  : "KAFKA_EVENT_CONNECTED",
-            label : "",
-            doc  : "Event issued when ."
-         },
-         {
-            name  : "KAFKA_EVENT_DISCONNECTED",
-            label : "",
-            doc  : "Event issued when ."
-         },
-         {
             name  : "REMOTE_EVENT_CONNECTED",
-            label : "",
-            doc  : "Event issued when ."
+            label : "REMOTE_EVENT_CONNECTED|host name",
+            doc   : "Event issued when a peer was connected. (Plugin_Remote)"
          },
          {
             name  : "REMOTE_EVENT_DISCONNECTED",
-            label : "",
-            doc  : "Event issued when ."
+            label : "REMOTE_EVENT_DISCONNECTED|host name",
+            doc  : "Event issued when a connecting peer has been disconnected. (Plugin_Remote)"
          },
          {
             name  : "AVATAR",
-            label : "",
-            doc  : "Event issued when ."
+            label : "AVATAR|START or END",
+            doc  : "Event issued when an avatar control start / end singal was received from remote host. (Plugin_Remote)"
          },
          {
             name  : "AVATAR_EVENT_CONTROL",
-            label : "",
-            doc  : "Event issued when ."
-         },
-         {
-            name  : "",
-            label : "",
-            doc  : "Event issued when ."
+            label : "AVATAR_EVENT_CONTROL|ENABLED or DISABLED",
+            doc  : "Event issued when avatar control was enabled or disabled by AVATAR_CONTROL command. (Plugin_Remote)"
          },
          {
             name  : "MODEL_ADD",
-            label : "MODEL_ADD|alias|file|(x,y,z)|(rx,ry,rz)|(cartoon ON/OFF)|(parent model alias)|(parent bone name)",
+            label : "MODEL_ADD|model alias|file.pmd|(x,y,z)|(rx,ry,rz)|(ON or OFF for cartoon)|(parent model alias)|(parent bone name)",
             doc   : "Add a 3D model into the scene." 
          },
          {
             name  : "MODEL_CHANGE",
-            label : "MODEL_CHANGE|alias|file",
+            label : "MODEL_CHANGE|model alias|file.pmd",
             doc   : "Change 3D model of the alias, keeping status." 
          },
          {
             name  : "MODEL_DELETE",
-            label : "MODEL_DELETE|alias",
+            label : "MODEL_DELETE|model alias",
             doc   : "Delete a 3D model from the scene." 
+         },
+         {
+            name  : "MODEL_BINDBONE",
+            label : "MODEL_BINDBONE|keyvalue name|min|max|model alias|bone name|x1,y1,z1|rx1,ry1,rz1|x2,y2,z2|rx2,ry2,rz2",
+            doc   : "Bind a KeyValue [min..max] to a bone movement rating from pos1/rot1 to pos2/rot2.  Another usage is \"MODEL_BINDBONE|model alias(bone name|x,y,z|rx,ry,rz\" to force fixed pos/rot.  This setting overwrites all motion control.  When multiplied, only the last one will be valid."
+         },
+         {
+            name  : "MODEL_BINDFACE",
+            label : "MODEL_BINDFACE|keyvalue name|min|max|model alias|face name|rate1|rate2",
+            doc   : "Bind a KeyValue [min..max] to a face rate from rate1 to rate2.  Another usage is \"MODEL_BINDFACE|model alias|bone name|rate\" to force the fixed rate. This setting overwrites all motion control. When multiplied, only the last one will be valid."
+         },
+         {
+            name  : "MODEL_UNBINDBONE",
+            label : "MODEL_UNBINDBONE|model alias|bone name|",
+            doc   : "Remove bone binding.  If not binded, do nothing." 
+         },
+         {
+            name  : "MODEL_UNBINDFACE",
+            label : "MODEL_UNBINDFACE|model alias|face name|",
+            doc   : "Remove face binding.  If not binded, do nothing." 
+         },
+         {
+            name  : "MOTION_ADD",
+            label : "MOTION_ADD|model alias|motion alias|file.vmd|(FULL or PART)|(ONCE or LOOP)|(ON or OFF for smoothing)|(ON or OFF for reposition)|(priority)",
+            doc   : "Add a new motion to the model.  Default priority is 0, motion of higher priority will supersede lower ones (with the same priority, later one will supersede)." 
+         },
+         {
+            name  : "MOTION_CHANGE",
+            label : "MOTION_CHANGE|model alias|motion alias|file.vmd",
+            doc   : "Swap the content of the playing motion, keeping its status." 
+         },
+         {
+            name  : "MOTION_ACCELERATE",
+            label : "MOTION_ACCELERATE|model alias|motion alias|speed|(duration)|(target)",
+            doc   : "Change motion speed.  Default speed is 1.0.  \"duration\" is time duration in seconds used for smooth speed change (0 means immediate change). \"target\" is point in the plyaing motion to start speed change in seconds."
+         },
+         {
+            name  : "MOTION_RESET",
+            label : "MOTION_RESET|model alias|motion alias",
+            doc   : "Rewind the playing motion to the starting frame, keeping its status." 
+         },
+         {
+            name  : "MOTION_DELETE",
+            label : "MOTION_DELETE|model alias|motion alias",
+            doc   : "Delete the playing motion." 
+         },
+         {
+            name  : "MOTION_CONFIGURE",
+            label : "MOTION_CONFIGURE|model alias|motion alias|COMMAND|(rate)",
+            doc   : "Configure how the motion should be blended.  \"COMMAND\" should be one of \"MODE_REPLACE\", \"MODE_ADD\" or \"BLEND_RATE\" with additional rate parameter.  You can also set per-bone, per-face setting by replacing \"COMMAND|(rate)\" with \"MODE_{BONE|FACE}_{REPLACE|ADD|NONE}|name[,name,..]\"."
+         },
+         {
+            name  : "MOVE_START",
+            label : "MOVE_START|model alias|x,y,z|(GLOBAL or LOCAL)|(speed)",
+            doc   : "Start Moving the model position toward the position. Setting the speed in distance per second enables moving with fixed speed." 
+         },
+         {
+            name  : "MOVE_STOP",
+            label : "MOVE_STOP|model alias",
+            doc   : "Force stop moving the model." 
+         },
+         {
+            name  : "TURN_START",
+            label : "TURN_START|model alias|x,y,z|(GLOBAL or LOCAL)|(speed)",
+            doc   : "Start rotating the model to face toward the given position. Setting the speed in degree per second enabled rotating with fixed speed." 
+         },
+         {
+            name  : "TURN_STOP",
+            label : "TURN_STOP|model alias",
+            doc   : "Force stop turning the model." 
+         },
+         {
+            name  : "ROTATE_START",
+            label : "ROTATE_START|model alias|rx,ry,rz|(GLOBAL or LOCAL)|(speed)",
+            doc   : "" 
+         },
+         {
+            name  : "ROTATE_STOP",
+            label : "ROTATE_STOP",
+            doc   : "Start rotating the model by the given rotation. Setting the speed in degree per second enabled rotating with fixed speed." 
+         },
+         {
+            name  : "STAGE",
+            label : "STAGE|file.pmd or file.xpmd or floorImagefile,backImagefile",
+            doc   : "Set stage.  \"file.pmd\" and \"file.xpmd\" loads a 3D model as stage, latter one will render in non-toon mode.  Specifying two imagefile will set them at floor and background."
+         },
+         {
+            name  : "LIGHTCOLOR",
+            label : "LIGHTCOLOR|r,g,b",
+            doc   : "Set light color." 
+         },
+         {
+            name  : "LIGHTDIRECTION",
+            label : "LIGHTDIRECTION|x,y,z",
+            doc   : "Set light direction." 
+         },
+         {
+            name  : "LIPSYNC_START",
+            label : "LIPSYNC_START|model alias|phoneme string and milliseconds pairs",
+            doc   : "Start lip sync on the model" 
+         },
+         {
+            name  : "LIPSYNC_STOP",
+            label : "LIPSYNC_STOP",
+            doc   : "Force stop the playing lip sync." 
+         },
+         {
+            name  : "CAMERA",
+            label : "CAMERA|x,y,z|rx,ry,rz|distance|fovy|(transition period)|(model alias)|(bone name)",
+            doc   : "Specify camera parameters.  Give transition period in seconds for fixed speed camera moving to the specified parameter with the duration.  Giving model alias enables model-focus panning, and additional bone name to mount camera on the bone.  Also \"CAMERA|file.vmd\" enables camera motion playing." 
+         },
+         {
+            name  : "PLUGIN_ENABLE",
+            label : "PLUGIN_ENABLE|plugin name",
+            doc   : "Enable the plug-in." 
+         },
+         {
+            name  : "PLUGIN_DISABLE",
+            label : "PLUGIN_DISABLE|plugin name",
+            doc   : "Disable the plug-in." 
+         },
+         {
+            name  : "KEYVALUE_SET",
+            label : "KEYVALUE_SET|keyvalue name|value",
+            doc   : "Set a KeyValue variable." 
+         },
+         {
+            name  : "LOG_START",
+            label : "LOG_START",
+            doc   : "Start user input logging and storing until LOG_FINISH is issued." 
+         },
+         {
+            name  : "LOG_FINISH",
+            label : "LOG_FINISH",
+            doc   : "Stop user input logging and storing." 
+         },
+         {
+            name  : "LOG_UPLOAD",
+            label : "LOG_UPLOAD",
+            doc   : "Upload the logged data into the server specified by the content." 
+         },
+         {
+            name  : "RECOG_RECORD_START",
+            label : "RECOG_RECORD_START",
+            doc   : "Start user voice recording and storing to local storage until RECOG_RECORD_STOP is issued." 
+         },
+         {
+            name  : "RECOG_RECORD_STOP",
+            label : "RECOG_RECORD_STOP",
+            doc   : "Stop user voice recording and storing to local storage." 
+         },
+         {
+            name  : "BUTTON_ADD",
+            label : "BUTTON_ADD|button alias|scale|x,y|image path|action|(ON or OFF for autoclose)",
+            doc   : "Add in-content button to the screen." 
+         },
+         {
+            name  : "BUTTON_DELETE",
+            label : "BUTTON_DELETE|button alias",
+            doc   : "Delete the button previously added by BUTTON_ADD." 
+         },
+         {
+            name  : "MENU",
+            label : "MENU|COMMAND",
+            doc   : "Manage in-content menu. COMMAND can be \"ADD|alias|(backgroundImagePath)\", \"DELETE|alias\", \"SETITEM|alias|id|label_string|message_string\", or \"DELETEITEM|alias|id\"." 
+         },
+         {
+            name  : "PROMPT_SHOW",
+            label : "PROMPT_SHOW|main text string|selection label 1|selection label 2|...",
+            doc   : "Show a prompt dialogue and wait for user response.  After selection PROMPT_EVENT_SELECTED will be issued."
+         },
+         {
+            name  : "INFOTEXT_FILE",
+            label : "INFOTEXT_FILE|text file|title label|button label[, label,..]|(scale)|(background color)|(text color)",
+            doc   : "Display content of the text file at full screen.  Tapping button will issue INFOTEXT_EVENT_CLOSE with tapped button label.  Colors should be given as RGB \"ff00cc\" or RGBA \"ff00ccbb\".  Text should be in UTF-8." 
+         },
+         {
+            name  : "INFOTEXT_STRING",
+            label : "INFOTEXT_STRING|text body|title label|button label[, label,..]|(scale)|(background color)|(text color)",
+            doc   : "Display the text body at full screen.  Tapping button will issue INFOTEXT_EVENT_CLOSE with tapped button label.  Colors should be given as RGB \"ff00cc\" or RGBA \"ff00ccbb\".  Text should be in UTF-8." 
+         },
+         {
+            name  : "RECOG_MODIFY",
+            label : "RECOG_MODIFY|COMMANDS",
+            doc   : "Modify recognition parameter.  COMMANDS are \"GAIN|scaling_value\", \"CHANGE_CONF|jconf_file\", \"USERDICT_SET|dictionary file\" or \"USERDICT_UNSET\"." 
+         },
+         {
+            name  : "SYNTH_START",
+            label : "SYNTH_START|model alias|voice alias|text string",
+            doc   : "Start voice synthesis of the text with the specified voice.  Lip sync will be played on the model." 
+         },
+         {
+            name  : "SYNTH_STOP",
+            label : "SYNTH_STOP|model alias",
+            doc   : "Stop voice sysnthesis being played on the model." 
+         },
+         {
+            name  : "SOUND_START",
+            label : "SOUND_START|sound alias|sound file",
+            doc   : "Start playing the audio file." 
+         },
+         {
+            name  : "SOUND_STOP",
+            label : "SOUND_STOP|sound alias",
+            doc   : "Stop sound playing." 
+         },
+         {
+            name  : "VALUE_SET",
+            label : "VALUE_SET|variable name|value",
+            doc   : "Set the variable of the name to the value.  The value can be \"minvalue|maxvalue\", in case a random value within the given numerical range will be assigned."
+         },
+         {
+            name  : "VALUE_UNSET",
+            label : "VALUE_UNSET|variable name",
+            doc   : "Clear and unset the variable." 
+         },
+         {
+            name  : "VALUE_EVAL",
+            label : "VALUE_EVAL|variable name|EQ or NE or LE or LT or GE or GT|value",
+            doc   : "Evaluate the variable and issue VALUE_EVENT_EVAL with the evaluation result TRUE or FALSE."
+         },
+         {
+            name  : "TIMER_START",
+            label : "TIMER_START|variable name|seconds",
+            doc   : "Set the count-down timer variable to the specified seconds.  Overwriting variable that does not reach 0 will issue TIMER_EVENT_CANCELLED first."
+         },
+         {
+            name  : "TIMER_STOP",
+            label : "TIMER_STOP|variable name",
+            doc   : "Force cancel the count-down timer variable, and set its value to 0." 
+         },
+         {
+            name  : "FST_LOAD",
+            label : "FST_LOAD|FST file|(initial state)",
+            doc   : "load FST file and start playing it. Current FST will be stopped and swapped to the new FST.  When initial state is not given it is assumed to \"0\"."
+         },
+         {
+            name  : "EXECUTE",
+            label : "EXECUTE|file",
+            doc   : "Tell OS to execute the file." 
+         },
+         {
+            name  : "KEY_POST",
+            label : "KEY_POST|window class name|key name|(ON or OFF for shift-key)|(ON or OFF for ctrl-key)|(On or OFF for alt-key)",
+            doc   : "Send key event to other window." 
+         },
+         {
+            name  : "TEXTAREA_ADD",
+            label : "TEXTAREA_ADD|textarea alias|width,height|size,margin,exlinespace|r,g,b,a|r,g,b,a|x,y,z|(rx,ry,rz)|(parent model alias)|(parent bone name)",
+            doc   : "Add a new textarea." 
+         },
+         {
+            name  : "TEXTAREA_SET",
+            label : "TEXTAREA_SET|textarea alias|text string or image file path",
+            doc   : "Set content to existing textarea." 
+         },
+         {
+            name  : "TEXTAREA_DELETE",
+            label : "TEXTAREA_DELETE|textarea alias",
+            doc   : "Delete the textarea." 
+         },
+         {
+            name  : "NETWORK_GET",
+            label : "NETWORK_GET|network get alias|URI|save file name",
+            doc   : "Open the URI and dump the fetched data into file." 
+         },
+         {
+            name  : "AVATAR_CONTROL",
+            label : "AVATAR_CONTROL|DISABLE or ENABLE",
+            doc   : "Temporary rurn off/on avatar control from remote host." 
          }
-
       ];
       const line = document.lineAt(position.line);
       if (!line.text.substr(0, position.character).match(/\|/)) return vscode.reject('no open parenthesis before cursor');
