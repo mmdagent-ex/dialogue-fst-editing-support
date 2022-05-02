@@ -82,7 +82,7 @@
 		"numbers": {
 			"patterns": [
 				{
-					"match": "(^[0-9]+)[ \\t]+([0-9]+)[ \\t]+(\\S*)",
+					"match": "(^\\w+)\\s+(\\w+)\\s+(\\S*)",
 					"captures": {
 						"1": {
 							"name": "entity.name.function.definition.fst"
@@ -100,7 +100,7 @@
 		"numbers_block": {
 			"patterns": [
 				{
-					"match": "(^\\d+)\\s+(\\d+)?",
+					"match": "(^\\w+)\\s+(\\w+)?",
 					"captures": {
 						"1": {
 							"name": "entity.name.function.definition.fst"
@@ -115,9 +115,9 @@
 		"command": {
 			"patterns": [
 				{
-					"match": "^[\\d\\s]+(\\S+)",
+					"match": "^(\\w+\\s+\\w+\\s+|\\s+)(\\S+)",
 					"captures": {
-						"1": {
+						"2": {
 							"name": "entity.name.type.fst"
 						}
 					}
@@ -133,7 +133,7 @@
 		"files": {
 			"patterns": [
 				{
-					"match": "\\|([^\\*\\?\\|]+\\.[A-Za-z0-9]+)",
+					"match": "\\|([^\\*\\?\\|]+\\.[A-Za-z][A-Za-z0-9]+)([ \\t\\|]|$)",
 					"captures": {
 						"1": {
 							"name": "string.unquoted.fst"
