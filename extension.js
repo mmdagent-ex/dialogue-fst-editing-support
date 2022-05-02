@@ -138,10 +138,10 @@ class FstCompletionItemProvider {
          return Promise.resolve(completionList);
        }
        const linePrefix = document.lineAt(position).text.substr(0, position.character - 1);
-       if (linePrefix.match(/^[\s\d]*([^\s]+|@.*?@)\s+$/)) {
+       if (linePrefix.match(/^(\w+\s+\w+\s+|\s+)([^ \t]+)[ \t]+$/)) {
           let completionList = new vscode.CompletionList(completionItemsCommand, false);
           return Promise.resolve(completionList);
-       } else if (linePrefix.match(/^[\s\d]*[^\|]+$/g)) {
+       } else if (linePrefix.match(/^(\w+\s+\w+\s+|\s+)[^\|]*$/g)) {
           let completionList = new vscode.CompletionList(completionItemsEvent, false);
           return Promise.resolve(completionList);
        }
@@ -767,10 +767,10 @@ class FstSignatureHelpProvider {
 // From-state jump
 class FstDefinitionProvider {
    provideDefinition(document, position, token) {
-       const wordRange = document.getWordRangeAtPosition(position,/\d+/);
+       const wordRange = document.getWordRangeAtPosition(position,/\w+/);
        if (!wordRange) return Promise.reject('No state id here.');
        const currentWord = document.lineAt(position.line).text.slice(wordRange.start.character, wordRange.end.character);
-       const regEx = new RegExp('^' + currentWord + '(?=[ \t])', 'gm');
+       const regEx = new RegExp('^' + currentWord + '(?=[ \\t])', 'gm');
        const text = document.getText();
        let match;
        const list = [];
@@ -792,10 +792,10 @@ class FstDefinitionProvider {
 
 class FstReferenceProvider {
    provideReferences(document, position, context, token) {
-       const wordRange = document.getWordRangeAtPosition(position,/\d+/);
+       const wordRange = document.getWordRangeAtPosition(position,/\w+/);
        if (!wordRange) return Promise.reject('No state id here.');
        const currentWord = document.lineAt(position.line).text.slice(wordRange.start.character, wordRange.end.character);
-       const regEx = new RegExp('(?<=^[0-9]+[ \t]+)(' + currentWord + ')[: \t]', 'gm');
+       const regEx = new RegExp('(?<=^\\w+[ \\t]+)(' + currentWord + ')[: \\t]', 'gm');
        const text = document.getText();
        let match;
        const list = [];
@@ -822,8 +822,8 @@ function checker (document) {
    }
 
    const text = document.getText();
-   const fromRe = new RegExp('^(\\w+)[ \t]', 'gm');
-   const toRe = new RegExp('^\\w+[ \t](\\w+)(?=[ \t:])', 'gm');
+   const fromRe = new RegExp('^(\\w+)[ \\t]', 'gm');
+   const toRe = new RegExp('^\\w+[ \\t]+(\\w+)(?=[ \\t:])', 'gm');
    let tList = [];
    let match;
    let hasInitialState = 0;

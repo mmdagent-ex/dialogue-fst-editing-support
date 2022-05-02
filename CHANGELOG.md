@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+
+## [1.1.1] - 2022-05-02
+### Fixed
+- Regex highlights
 ## [1.1.0] - 2022-05-02
 ### Added
 - Diagnostics: initial state, isolated state
