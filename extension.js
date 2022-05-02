@@ -2,6 +2,9 @@ const vscode = require('vscode');
 
 const FST_MODE = { scheme: 'file', language: 'fst' };
 
+let diagnosticCollection = null;
+
+// Event/Command completion
 class FstCompletionItemProvider {
    provideCompletionItems(document, position, token) {
          const completionItemsEvent = [
@@ -163,9 +166,330 @@ class FstCompletionItemProvider {
    }
 }
 
+// Signature help for each command/event
 class FstSignatureHelpProvider {
    provideSignatureHelp(document, position, token) {
       const commandList = [
+         {
+            name  : "MODEL_EVENT_ADD",
+            label : "MODEL_EVENT_ADD|model",
+            doc   : "Event issued when a 3D model was added." 
+         },
+         {
+            name  : "MODEL_EVENT_CHANGE",
+            label : "MODEL_EVENT_CHANGE|model",
+            doc   : "Event issued when a 3D model was changed." 
+         },
+         {
+            name  : "MODEL_EVENT_DELETE",
+            label : "MODEL_EVENT_DELETE|model",
+            doc   : "Event issued when a 3D model was deleted from scene." 
+         },
+         {
+            name  : "MODEL_EVENT_SELECT",
+            label : "MODEL_EVENT_SELECT|model",
+            doc   : "Event issued when a 3D model is selected by double-tap."
+         },
+         {
+            name  : "MODEL_EVENT_BINDBONE",
+            label : "MODEL_EVENT_BINDBONE|model|boneName",
+            doc   : "Event issued when MODEL_BINDBONE was successfully finished."
+         },
+         {
+            name  : "MODEL_EVENT_BINDFACE",
+            label : "MODEL_EVENT_BINDFACE|model|faceName",
+            doc   : "Event issued when MODEL_BINDFACE was successfully finished."
+         },
+         {
+            name  : "MODEL_EVENT_UNBINDBONE",
+            label : "MODEL_EVENT_UNBINDBONE|model|boneName",
+            doc   : "Event issued when MODEL_UNBINDBONE was successfully finished."
+         },
+         {
+            name  : "MODEL_EVENT_UNBINDFACE",
+            label : "MODEL_EVENT_UNBINDFACE|model|faceName",
+            doc   : "Event issued when MODEL_UNBINDFACE was successfully finished."
+         },
+         {
+            name  : "MOTION_EVENT_ADD",
+            label : "MOTION_EVENT_ADD|model|motion",
+            doc   : "Event issued when a motion was newly added and started on the model."
+         },
+         {
+            name  : "MOTION_EVENT_CHANGE",
+            label : "MOTION_EVENT_CHANGE|model|motion",
+            doc   : "Event issued when a playing motion was changed."
+         },
+         {
+            name  : "MOTION_EVENT_ACCELERATE",
+            label : "MOTION_EVENT_ACCELERATE|model|motion",
+            doc   : "Event issued when a motion's accelleration was assigned by MOTION_ACCELERATE."
+         },
+         {
+            name  : "MOTION_EVENT_RESET",
+            label : "MOTION_EVENT_RESET|model|motion",
+            doc   : "Event issued when a motion was resetted and restarted."
+         },
+         {
+            name  : "MOTION_EVENT_DELETE",
+            label : "MOTION_EVENT_DELETE|model|motion",
+            doc   : "Event issued when a motion was deleted by finished playing or deletion command."
+         },
+         {
+            name  : "MOTION_EVENT_CONFIGURE",
+            label : "MOTION_EVENT_CONFIGURE|model|motion",
+            doc  :  "Event issued when a motion's blending mode was changed by MOTION_CONFIGURE."
+         },
+         {
+            name  : "MOVE_EVENT_START",
+            label : "MOVE_EVENT_START|model",
+            doc  :  "Event issued when a 3D model starts moving by MOVE_START."
+         },
+         {
+            name  : "MOVE_EVENT_STOP",
+            label : "MOVE_EVENT_STOP|model",
+            doc  :  "Event issued when a 3D model finished movement triggered by MOVE_START."
+         },
+         {
+            name  : "TURN_EVENT_START",
+            label : "TURN_EVENT_START|model",
+            doc   : "Event issued when a 3D model starts turning by TURN_START."
+         },
+         {
+            name  : "TURN_EVENT_STOP",
+            label : "TURN_EVENT_STOP|model",
+            doc   : "Event issued when a 3D model finished turning triggered by TURN_START."
+         },
+         {
+            name  : "ROTATE_EVENT_START",
+            label : "ROTATE_EVENT_START|model",
+            doc   : "Event issued when a 3D model starts rotating by ROTATE_START."
+         },
+         {
+            name  : "ROTATE_EVENT_STOP",
+            label : "ROTATE_EVENT_STOP|model",
+            doc  :  "Event issued when a 3D model finished rotation issued by ROTATE_START."
+         },
+         {
+            name  : "LIPSYNC_EVENT_START",
+            label : "LIPSYNC_EVENT_START|model",
+            doc   : "Event issued when a 3D model started lip syncing by LIPSYNC_START."
+         },
+         {
+            name  : "LIPSYNC_EVENT_STOP",
+            label : "LIPSYNC_EVENT_STOP|model",
+            doc  :  "Event issued when finished playing a lip syncing started by LIPSYNC_START."
+         },
+         {
+            name  : "PLUGIN_EVENT_ENABLE",
+            label : "PLUGIN_EVENT_ENABLE|pluginName",
+            doc   : "Event issued when a plug-in started working."
+         },
+         {
+            name  : "PLUGIN_EVENT_DISABLE",
+            label : "PLUGIN_EVENT_DISABLE|pluginName",
+            doc   : "Event issued when a plug-in stopped working."
+         },
+         {
+            name  : "DRAGANDDROP",
+            label : "DRAGANDDROP|file",
+            doc   : "Event issued when a file was dropped to the window by user."
+         },
+         {
+            name  : "KEY",
+            label : "KEY|character",
+            doc  :  "Event issued when a key was pressed by user."
+         },
+         {
+            name  : "SCREEN_EVENT_LONGPRESSED",
+            label : "SCREEN_EVENT_LONGPRESSED|xxxx_yyyy_wwww_hhhh",
+            doc   : "Event issued when a user long-tapped at a position (x, y) of the screen (w, h)."
+         },
+         {
+            name  : "SCREEN_EVENT_LONGRELEASED",
+            label : "SCREEN_EVENT_LONGRELEASED|xxxx_yyyy_wwww_hhhh",
+            doc   : "Event issued when a user's long-tap was released at a position (x, y) of the screen (w, h)."
+         },
+         {
+            name  : "BUTTON_EVENT_ADD",
+            label : "BUTTON_EVENT_ADD|button",
+            doc   : "Event issued when the button being added by BUTTON_ADD becomes shown and active on screen."
+         },
+         {
+            name  : "BUTTON_EVENT_EXEC",
+            label : "BUTTON_EVENT_EXEC|button",
+            doc   : "Event issued when user tapped the button."
+         },
+         {
+            name  : "BUTTON_EVENT_DELETE",
+            label : "BUTTON_EVENT_DELETE|button",
+            doc  :  "Event issued when the button was deleted by tap action or BUTTON_DELETE."
+         },
+         {
+            name  : "MENU_EVENT",
+            label : "MENU_EVENT|ADD or DELETE or SETITEM or DELETEITEM|aliasName|(id)",
+            doc  : "Event issued when a menu was changed by MENU command."
+         },
+         {
+            name  : "PROMPT_EVENT_SELECTED",
+            label : "PROMPT_EVENT_SELECTED|number",
+            doc   : "number > 0 means user has tapped one of the selection of a prompt shown by PROMPT_SHOW. -1 means cancelltation."
+         },
+         {
+            name  : "INFOTEXT_EVENT_SHOW",
+            label : "",
+            doc   : "Event issued when a full-screen document is being shown by INFOTEXT_FILE or INFOTEXT_STRING."
+         },
+         {
+            name  : "INFOTEXT_EVENT_CLOSE",
+            label : "INFOTEXT_EVENT_CLOSE|selectedButtonLabel",
+            doc   : "Event issued when a full-screen document was closed by user tapping one of the button.  The selectedButtonLabel is the label of the button user has tapped."
+         },
+         {
+            name  : "RECOG_EVENT_START",
+            label : "RECOG_EVENT_START",
+            doc   : "Event issued when audio input was detected and speech recognition has been started. (Plugin_Julius)"
+         },
+         {
+            name  : "RECOG_EVENT_STOP",
+            label : "RECOG_EVENT_STOP|w1,w2,...",
+            doc   : "Gives recognition result after end of speech was detected. (Plugin_Julius or equivalent)"
+         },
+         {
+            name  : "RECOG_EVENT_OVERFLOW",
+            label : "RECOG_EVENT_OVERFLOW",
+            doc   : "Event issued when audio input is too loud to recognize. (Plugin_Julius or equivalent)"
+         },
+         {
+            name  : "RECOG_EVENT_GMM",
+            label : "RECOG_EVENT_GMM|gmm_name",
+            doc   : "When GMM audio identification is enabled, gives identification result with the name of the GMM model.  Will be issued just before RECOG_EVENT_STOP. (Plugin_Julius or equivalent)"
+         },
+         {
+            name  : "RECOG_EVENT_AWAY",
+            label : "RECOG_EVENT_AWAY|ON or OFF",
+            doc   : "Event issued when AWAY status was changed to the value. (Plugin_Julius or equivalent)"
+         },
+         {
+            name  : "RECOG_EVENT_MODIFY",
+            label : "RECOG_EVENT_MODIFY|GAIN or USERDICT_SET or USERDICT_UNSET or CHANGE_CONF|(confName)",
+            doc   : "Event issued when configuration was changed by RECOG_MODIFY.  \"confName\" is valid for CHANGE_CONF only.  (Plugin_Julius or equivalent)"
+         },
+         {
+            name  : "SYNTH_EVENT_START",
+            label : "SYNTH_EVENT_START|model",
+            doc   : "Event issued when a model starts talking by speech synthesis. (Plugin_Open_JTalk or equivalent)"
+         },
+         {
+            name  : "SYNTH_EVENT_STOP",
+            label : "SYNTH_EVENT_STOP",
+            doc   : "Event issued when a model finished talking by speech synthesis. (Plugin_Open_JTalk or equivalent)"
+         },
+         {
+            name  : "SOUND_EVENT_START",
+            label : "SOUND_EVENT_START|sound",
+            doc   : "Event issued when a sound starts playing by SOUND_START (Plugin_Audio)."
+         },
+         {
+            name  : "SOUND_EVENT_STOP",
+            label : "SOUND_EVENT_STOP|sound",
+            doc   : "Event issued when a sound being played by SOUND_START finished playing. (Plugin_Audio)"
+         },
+         {
+            name  : "VALUE_EVENT_SET",
+            label : "VALUE_EVENT_SET|variable",
+            doc   : "Event issued when a value was set to the variable name by VALUE_SET. (Plugin_Variables)"
+         },
+         {
+            name  : "VALUE_EVENT_UNSET",
+            label : "VALUE_EVENT_UNSET|variable",
+            doc   : "Event issued when the variable was unset by VALUE_UNSET. (Plugin_Variables)"
+         },
+         {
+            name  : "VALUE_EVENT_EVAL",
+            label : "VALUE_EVENT_EVAL|variable|EQ or NE or LE or LT or GE or GT|value|TRUE or FALSE",
+            doc   : "Tells result of VALUE_EVAL.  The arguments will \"value\" is the evaluated equation itself, and the final argument shows the result. (Plugin_Variables)"
+         },
+         {
+            name  : "TIMER_EVENT_START",
+            label : "TIMER_EVENT_START|variable",
+            doc   : "Event issued when a value is set to the timer variable and starts. (Plugin_Variables)"
+         },
+         {
+            name  : "TIMER_EVENT_STOP",
+            label : "TIMER_EVENT_STOP|variable",
+            doc   : "Event issued when a timer variable's count down value has reached 0. (Plugin_Variables)"
+         },
+         {
+            name  : "TIMER_EVENT_CANCELLED",
+            label : "TIMER_EVENT_CANCELLED|variable",
+            doc  : "Event issued when a count down has been cancelled before reaching 0 due to unset or setting another value. (Plugin_Variables)"
+         },
+         {
+            name  : "TEXTAREA_EVENT_ADD",
+            label : "TEXTAREA_EVENT_ADD|textareaName",
+            doc  : "Event issued when a TEXTAREA has been added by TEXTAREA_ADD. (Plugin_TextArea)"
+         },
+         {
+            name  : "TEXTAREA_EVENT_SET",
+            label : "TEXTAREA_EVENT_SET|textareaName",
+            doc   : "Event issued when a TEXTAREA was assigned a text by TEXTAREA_SET. (Plugin_TextArea)"
+         },
+         {
+            name  : "TEXTAREA_EVENT_DELETE",
+            label : "TEXTAREA_EVENT_DELETE|textareaName",
+            doc  : "Event issued when a TEXTAREA was deleted. (Plugin_TextArea)"
+         },
+         {
+            name  : "NETWORK_EVENT_GET",
+            label : "NETWORK_EVENT_GET|networkGetName",
+            doc   : "Event issued when fetching a URL to file issued by NETWORK_GET has finished. (Plugin_Network)"
+         },
+         {
+            name  : "CURRENT_TIME",
+            label : "CURRENT_TIME|hour|min",
+            doc   : "Event issued periodically telling the current local time."
+         },
+         {
+            name  : "TAPPED",
+            label : "TAPPED|x|y",
+            doc   : "Event issued when a user tapped a screen at the position."
+         },
+         {
+            name  : "KAFKA_EVENT_CONNECTED",
+            label : "",
+            doc  : "Event issued when ."
+         },
+         {
+            name  : "KAFKA_EVENT_DISCONNECTED",
+            label : "",
+            doc  : "Event issued when ."
+         },
+         {
+            name  : "REMOTE_EVENT_CONNECTED",
+            label : "",
+            doc  : "Event issued when ."
+         },
+         {
+            name  : "REMOTE_EVENT_DISCONNECTED",
+            label : "",
+            doc  : "Event issued when ."
+         },
+         {
+            name  : "AVATAR",
+            label : "",
+            doc  : "Event issued when ."
+         },
+         {
+            name  : "AVATAR_EVENT_CONTROL",
+            label : "",
+            doc  : "Event issued when ."
+         },
+         {
+            name  : "",
+            label : "",
+            doc  : "Event issued when ."
+         },
          {
             name  : "MODEL_ADD",
             label : "MODEL_ADD|alias|file|(x,y,z)|(rx,ry,rz)|(cartoon ON/OFF)|(parent model alias)|(parent bone name)",
@@ -180,28 +504,12 @@ class FstSignatureHelpProvider {
             name  : "MODEL_DELETE",
             label : "MODEL_DELETE|alias",
             doc   : "Delete a 3D model from the scene." 
-         },
-         {
-            name  : "MODEL_EVENT_ADD",
-            label : "MODEL_EVENT_ADD|alias",
-            doc   : "Event when a 3D model with the new alias was added." 
-         },
-         {
-            name  : "MODEL_EVENT_CHANGE",
-            label : "MODEL_EVENT_CHANGE|alias",
-            doc   : "Event when a 3D model of the alias was changed." 
-         },
-         {
-            name  : "MODEL_EVENT_DELETE",
-            label : "MODEL_EVENT_DELETE|alias",
-            doc   : "Event when a 3D model of the alias was deleted from scene." 
          }
 
       ];
       const line = document.lineAt(position.line);
       if (!line.text.substr(0, position.character).match(/\|/)) return vscode.reject('no open parenthesis before cursor');
 
-      //var compart = ;
       const command = line.text.substr(0, position.character).match(/([^\|\s]+)\|\S*$/)[1];
       const com2 = line.text.substr(0, position.character).match(/\S+$/)[0];
       const count = (com2.match(/\|/g) || []).length;
@@ -219,6 +527,7 @@ class FstSignatureHelpProvider {
   }
 }
 
+// From-state jump
 class FstDefinitionProvider {
    provideDefinition(document, position, token) {
        const wordRange = document.getWordRangeAtPosition(position,/\d+/);
@@ -241,6 +550,8 @@ class FstDefinitionProvider {
        return Promise.resolve(list);
    }
 }
+
+// To-state jump
 
 class FstReferenceProvider {
    provideReferences(document, position, context, token) {
@@ -265,11 +576,90 @@ class FstReferenceProvider {
    }
 }
 
+// document checker for initial state and state connectivity 
+function checker (document) {
+   let diagnostics = [];
+
+   if (document.languageId !== "fst") {
+      return;
+   }
+
+   const text = document.getText();
+   const fromRe = new RegExp('^(\\w+)[ \t]', 'gm');
+   const toRe = new RegExp('^\\w+[ \t](\\w+)(?=[ \t:])', 'gm');
+   let tList = [];
+   let match;
+   let hasInitialState = 0;
+   while ((match = toRe.exec(text)) !== null) {
+      tList.push(match[1]);
+   }
+   while (match = fromRe.exec(text)) {
+     if (match[1] == "0") {
+        hasInitialState = 1;
+        continue;
+     }
+     if (! tList.includes(match[1])) {
+        const startPos = document.positionAt(match.index);
+        const endPos = document.positionAt(match.index + match[1].length);
+        const diagnostic = new vscode.Diagnostic(new vscode.Range(startPos, endPos), "Transition to state \"" + match[1] +"\" not found", vscode.DiagnosticSeverity.Warning);
+        diagnostics.push(diagnostic);
+     }
+   }
+   if (hasInitialState == 0) {
+      const diagnostic = new vscode.Diagnostic(new vscode.Range(0,0,1,0), "Initial state \"0\" not found", vscode.DiagnosticSeverity.Error);
+      diagnostics.push(diagnostic);
+   }
+   diagnosticCollection.set(document.uri, diagnostics);
+}
+
+// holder for delayed updates
+let throttle = {
+	"document": null,
+	"timeout": null
+};
+
+// suppress subsequent checker
+function suppressCheck (document) {
+	if (throttle.timeout && (document === throttle.document)) {
+		clearTimeout(throttle.timeout);
+		throttle.document = null;
+		throttle.timeout = null;
+	}
+}
+
+// trigger checker at 500ms interval
+function requestCheck (document) {
+	suppressCheck(document);
+	throttle.document = document;
+	throttle.timeout = setTimeout(function waitThrottleDuration () {
+		// Do not use throttle.document in this function; it may have changed
+		checker(document);
+		suppressCheck(document);
+	}, 500);
+}
+
+// request checker on text change
+function didChangeTextDocument (event) {
+	requestCheck(event.document);
+}
+
+// delete checker on text close
+function didCloseTextDocument (document) {
+   suppressCheck(document);
+	diagnosticCollection.delete(document.uri);
+}
+
 function activate(context) {
+   context.subscriptions.push(
+		vscode.workspace.onDidOpenTextDocument(checker),
+      vscode.workspace.onDidChangeTextDocument(didChangeTextDocument),
+		vscode.workspace.onDidCloseTextDocument(didCloseTextDocument));
    context.subscriptions.push(vscode.languages.registerCompletionItemProvider(FST_MODE, new FstCompletionItemProvider(), "<"));
    context.subscriptions.push(vscode.languages.registerSignatureHelpProvider(FST_MODE, new FstSignatureHelpProvider(), '|'));
    context.subscriptions.push(vscode.languages.registerDefinitionProvider(FST_MODE, new FstDefinitionProvider()));
    context.subscriptions.push(vscode.languages.registerReferenceProvider(FST_MODE, new FstReferenceProvider()));
+   diagnosticCollection = vscode.languages.createDiagnosticCollection("dialogue-fst-editing-support");
+	context.subscriptions.push(diagnosticCollection);
 }
 
 function deactivate() {
