@@ -127,7 +127,9 @@ class FstCompletionItemProvider {
            {label: 'TEXTAREA_SET', kind: vscode.CompletionItemKind.Method},
            {label: 'TEXTAREA_DELETE', kind: vscode.CompletionItemKind.Method},
            {label: 'NETWORK_GET', kind: vscode.CompletionItemKind.Method},
-           {label: 'AVATAR_CONTROL', kind: vscode.CompletionItemKind.Method}
+           {label: 'AVATAR_CONTROL', kind: vscode.CompletionItemKind.Method},
+           {label: 'MOTIONCAPTURE_START', kind: vscode.CompletionItemKind.Method},
+           {label: 'MOTIONCAPTURE_STOP', kind: vscode.CompletionItemKind.Method}
        ];
        const completionItemsEps = [
            {label: 'eps>', kind: vscode.CompletionItemKind.Interface}
@@ -742,6 +744,16 @@ class FstSignatureHelpProvider {
             name  : "AVATAR_CONTROL",
             label : "AVATAR_CONTROL|DISABLE or ENABLE",
             doc   : "Temporary rurn off/on avatar control from remote host." 
+         },
+         {
+            name  : "MOTIONCAPTURE_START",
+            label : "MOTIONCAPTURE_START|model alias|filename.vmd",
+            doc   : "Start saving bone/face values to file." 
+         },
+         {
+            name  : "MOTIONCAPTURE_STOP",
+            label : "MOTIONCAPTURE_STOP|model alias",
+            doc   : "Stop saving bone/face values to file." 
          }
       ];
       const line = document.lineAt(position.line);
@@ -823,24 +835,34 @@ function checker (document) {
 
    const text = document.getText();
    const fromRe = new RegExp('^(\\w+)[ \\t]', 'gm');
-   const toRe = new RegExp('^\\w+[ \\t]+(\\w+)(?=[ \\t:])', 'gm');
-   let tList = [];
+   const toRe = new RegExp('^(\\w+[ \\t]+)(\\w+)(?=[ \\t:])', 'gm');
+   let fromList = [];
+   let toList = [];
    let match;
    let hasInitialState = 0;
    while ((match = toRe.exec(text)) !== null) {
-      tList.push(match[1]);
+      toList.push(match[2]);
    }
    while (match = fromRe.exec(text)) {
+     fromList.push(match[1]);
      if (match[1] == "0") {
         hasInitialState = 1;
         continue;
      }
-     if (! tList.includes(match[1])) {
+     if (! toList.includes(match[1])) {
         const startPos = document.positionAt(match.index);
         const endPos = document.positionAt(match.index + match[1].length);
-        const diagnostic = new vscode.Diagnostic(new vscode.Range(startPos, endPos), "Transition to state \"" + match[1] +"\" not found", vscode.DiagnosticSeverity.Warning);
+        const diagnostic = new vscode.Diagnostic(new vscode.Range(startPos, endPos), "\"" + match[1] + "\" unreachable: no arc to this state", vscode.DiagnosticSeverity.Warning);
         diagnostics.push(diagnostic);
      }
+   }
+   while ((match = toRe.exec(text)) !== null) {
+      if (! fromList.includes(match[2])) {
+         const startPos = document.positionAt(match.index + match[1].length);
+         const endPos = document.positionAt(match.index + match[1].length + match[2].length);
+         const diagnostic = new vscode.Diagnostic(new vscode.Range(startPos, endPos), "\"" + match[2] +"\" no arc defined: exection will stop here", vscode.DiagnosticSeverity.Warning);
+         diagnostics.push(diagnostic);
+      }
    }
    if (hasInitialState == 0) {
       const diagnostic = new vscode.Diagnostic(new vscode.Range(0,0,1,0), "Initial state \"0\" not found", vscode.DiagnosticSeverity.Error);
@@ -880,6 +902,11 @@ function didChangeTextDocument (event) {
 	requestCheck(event.document);
 }
 
+// request checker on text open
+function didChangeActiveTextEditor (event) {
+	checker(event.document);
+}
+
 // delete checker on text close
 function didCloseTextDocument (document) {
    suppressCheck(document);
@@ -888,6 +915,7 @@ function didCloseTextDocument (document) {
 
 function activate(context) {
    context.subscriptions.push(
+      vscode.window.onDidChangeActiveTextEditor(didChangeActiveTextEditor),
 		vscode.workspace.onDidOpenTextDocument(checker),
       vscode.workspace.onDidChangeTextDocument(didChangeTextDocument),
 		vscode.workspace.onDidCloseTextDocument(didCloseTextDocument));
