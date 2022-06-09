@@ -852,7 +852,7 @@ function checker (document) {
      if (! toList.includes(match[1])) {
         const startPos = document.positionAt(match.index);
         const endPos = document.positionAt(match.index + match[1].length);
-        const diagnostic = new vscode.Diagnostic(new vscode.Range(startPos, endPos), "\"" + match[1] + "\" unreachable: no arc to this state", vscode.DiagnosticSeverity.Warning);
+        const diagnostic = new vscode.Diagnostic(new vscode.Range(startPos, endPos), "Missing reference for state \'" + match[1] + "\', will never be reached", vscode.DiagnosticSeverity.Warning);
         diagnostics.push(diagnostic);
      }
    }
@@ -860,7 +860,7 @@ function checker (document) {
       if (! fromList.includes(match[2])) {
          const startPos = document.positionAt(match.index + match[1].length);
          const endPos = document.positionAt(match.index + match[1].length + match[2].length);
-         const diagnostic = new vscode.Diagnostic(new vscode.Range(startPos, endPos), "\"" + match[2] +"\" no arc defined: exection will stop here", vscode.DiagnosticSeverity.Warning);
+         const diagnostic = new vscode.Diagnostic(new vscode.Range(startPos, endPos), "No definition begins with state \'" + match[2] +"\', exec will stop at the state", vscode.DiagnosticSeverity.Warning);
          diagnostics.push(diagnostic);
       }
    }
@@ -913,6 +913,36 @@ function didCloseTextDocument (document) {
 	diagnosticCollection.delete(document.uri);
 }
 
+class FstRenameProvider {
+   provideRenameEdits(document, position, newName, token) {
+      const range = document.getWordRangeAtPosition(position,/\w+/);
+      if (!range) return undefined;
+      const word = document.getText(range);
+      const uri = vscode.Uri.file(document.fileName);
+      let edit = new vscode.WorkspaceEdit();
+      //     edit.replace(document.uri, range, newName);
+      const text = document.getText();
+      const fromRe = new RegExp('^(\\w+)[ \\t]', 'gm');
+      const toRe = new RegExp('^(\\w+[ \\t]+)(\\w+)(?=[ \\t:])', 'gm');
+      let match;
+      while ((match = fromRe.exec(text)) != null) {
+         if (match[1] == word) {
+            const startPos = document.positionAt(match.index);
+            const endPos = document.positionAt(match.index + match[1].length);
+            edit.replace(uri, new vscode.Range(startPos, endPos), newName);
+         }
+      }
+      while ((match = toRe.exec(text)) !== null) {
+         if (match[2] == word) {
+            const startPos = document.positionAt(match.index + match[1].length);
+            const endPos = document.positionAt(match.index + match[1].length + match[2].length);
+            edit.replace(uri, new vscode.Range(startPos, endPos), newName);
+         }
+      }
+      return Promise.resolve(edit);
+   }
+}
+
 function activate(context) {
    context.subscriptions.push(
       vscode.window.onDidChangeActiveTextEditor(didChangeActiveTextEditor),
@@ -925,6 +955,7 @@ function activate(context) {
    context.subscriptions.push(vscode.languages.registerReferenceProvider(FST_MODE, new FstReferenceProvider()));
    diagnosticCollection = vscode.languages.createDiagnosticCollection("dialogue-fst-editing-support");
 	context.subscriptions.push(diagnosticCollection);
+   context.subscriptions.push(vscode.languages.registerRenameProvider(FST_MODE, new FstRenameProvider()));
 }
 
 function deactivate() {

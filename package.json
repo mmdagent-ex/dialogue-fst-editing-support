@@ -29,6 +29,9 @@
             "path": "./syntaxes/fst.tmLanguage.json"
         }]
     },
+    "capabilities": {
+        "renameProvider" : "true"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/lee-lab/dialogue-fst-editing-support"
