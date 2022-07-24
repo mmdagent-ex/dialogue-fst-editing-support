@@ -5,6 +5,12 @@ All notable changes to the "dialogue-fst-editing-support" extension will be docu
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
+
+## [1.1.4] - 2022-07-24
+
+### Added
+- `AVATAR_LOGSAVE_START|filename.txt`
+- `AVATAR_LOGSAVE_STOP"`
 ## [1.1.3] - 2022-06-10
 ### Added
 - State symbol rename function (F2 or 'Rename Symbol')

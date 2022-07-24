@@ -129,7 +129,9 @@ class FstCompletionItemProvider {
            {label: 'NETWORK_GET', kind: vscode.CompletionItemKind.Method},
            {label: 'AVATAR_CONTROL', kind: vscode.CompletionItemKind.Method},
            {label: 'MOTIONCAPTURE_START', kind: vscode.CompletionItemKind.Method},
-           {label: 'MOTIONCAPTURE_STOP', kind: vscode.CompletionItemKind.Method}
+           {label: 'MOTIONCAPTURE_STOP', kind: vscode.CompletionItemKind.Method},
+           {label: 'AVATAR_LOGSAVE_START', kind: vscode.CompletionItemKind.Method},
+           {label: 'AVATAR_LOGSAVE_STOP', kind: vscode.CompletionItemKind.Method}
        ];
        const completionItemsEps = [
            {label: 'eps>', kind: vscode.CompletionItemKind.Interface}
@@ -754,6 +756,16 @@ class FstSignatureHelpProvider {
             name  : "MOTIONCAPTURE_STOP",
             label : "MOTIONCAPTURE_STOP|model alias",
             doc   : "Stop saving bone/face values to file." 
+         },
+         {
+            name  : "AVATAR_LOGSAVE_START",
+            label : "AVATAR_LOGSAVE_START|filename",
+            doc   : "Start saving messages sent from avatar control peer to file." 
+         },
+         {
+            name  : "AVATAR_LOGSAVE_STOP",
+            label : "AVATAR_LOGSAVE_STOP",
+            doc   : "Stop saving messages sent from avatar control peer to file." 
          }
       ];
       const line = document.lineAt(position.line);
