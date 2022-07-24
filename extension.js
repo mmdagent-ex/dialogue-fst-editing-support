@@ -480,21 +480,21 @@ class FstSignatureHelpProvider {
          {
             name  : "MODEL_BINDBONE",
             label : "MODEL_BINDBONE|keyvalue name|min|max|model alias|bone name|x1,y1,z1|rx1,ry1,rz1|x2,y2,z2|rx2,ry2,rz2",
-            doc   : "Bind a KeyValue [min..max] to a bone movement rating from pos1/rot1 to pos2/rot2.  Another usage is \"MODEL_BINDBONE|model alias(bone name|x,y,z|rx,ry,rz\" to force fixed pos/rot.  This setting overwrites all motion control.  When multiplied, only the last one will be valid."
+            doc   : "Bind a KeyValue [min..max] to a bone movement rating from pos1/rot1 to pos2/rot2.  Another usage is \"MODEL_BINDBONE|model alias|bone name|x,y,z|rx,ry,rz\" to force fixed pos/rot.  This setting overwrites all motion control.  When multiplied, only the last one will be valid."
          },
          {
             name  : "MODEL_BINDFACE",
             label : "MODEL_BINDFACE|keyvalue name|min|max|model alias|face name|rate1|rate2",
-            doc   : "Bind a KeyValue [min..max] to a face rate from rate1 to rate2.  Another usage is \"MODEL_BINDFACE|model alias|bone name|rate\" to force the fixed rate. This setting overwrites all motion control. When multiplied, only the last one will be valid."
+            doc   : "Bind a KeyValue [min..max] to a face rate from rate1 to rate2.  Another usage is \"MODEL_BINDFACE|model alias|face name|rate\" to force the fixed rate. This setting overwrites all motion control. When multiplied, only the last one will be valid."
          },
          {
             name  : "MODEL_UNBINDBONE",
-            label : "MODEL_UNBINDBONE|model alias|bone name|",
+            label : "MODEL_UNBINDBONE|model alias|bone name",
             doc   : "Remove bone binding.  If not binded, do nothing." 
          },
          {
             name  : "MODEL_UNBINDFACE",
-            label : "MODEL_UNBINDFACE|model alias|face name|",
+            label : "MODEL_UNBINDFACE|model alias|face name",
             doc   : "Remove face binding.  If not binded, do nothing." 
          },
          {
@@ -619,7 +619,7 @@ class FstSignatureHelpProvider {
          },
          {
             name  : "RECOG_RECORD_START",
-            label : "RECOG_RECORD_START",
+            label : "RECOG_RECORD_START|directory",
             doc   : "Start user voice recording and storing to local storage until RECOG_RECORD_STOP is issued." 
          },
          {
@@ -745,7 +745,7 @@ class FstSignatureHelpProvider {
          {
             name  : "AVATAR_CONTROL",
             label : "AVATAR_CONTROL|DISABLE or ENABLE",
-            doc   : "Temporary rurn off/on avatar control from remote host." 
+            doc   : "Temporary turn off/on avatar control from remote host." 
          },
          {
             name  : "MOTIONCAPTURE_START",
