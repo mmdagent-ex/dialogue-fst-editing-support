@@ -40,3 +40,10 @@ Update version.
 - Completion updated for recent version
 - Diagnostics: initial state, isolated state
 - Signature helps
+
+### 1.2.0
+
+Update version.
+
+- More commands
+- added "%INCLUDE"

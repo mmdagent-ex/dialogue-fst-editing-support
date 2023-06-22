@@ -28,6 +28,9 @@
 		},
 		{
 			"include": "#files"
+		},
+		{
+			"include": "#includes"
 		}
 	],
 	"repository": {
@@ -136,6 +139,21 @@
 					"match": "\\|([^\\*\\?\\|]+\\.[A-Za-z][A-Za-z0-9]+)([ \\t\\|]|$)",
 					"captures": {
 						"1": {
+							"name": "string.unquoted.fst"
+						}
+					}
+				}
+			]
+		},
+		"includes": {
+			"patterns": [
+				{
+					"match": "^\\s*(%INCLUDE)\\((\\S*)\\)",
+					"captures": {
+						"1": {
+							"name": "keyword.definition.fst"
+						},
+						"2": {
 							"name": "string.unquoted.fst"
 						}
 					}

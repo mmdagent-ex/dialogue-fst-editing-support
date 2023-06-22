@@ -68,7 +68,16 @@ class FstCompletionItemProvider {
             {label: 'REMOTE_EVENT_CONNECTED', kind: vscode.CompletionItemKind.Event},
             {label: 'REMOTE_EVENT_DISCONNECTED', kind: vscode.CompletionItemKind.Event},
             {label: 'AVATAR', kind: vscode.CompletionItemKind.Event},
-            {label: 'AVATAR_EVENT_CONTROL', kind: vscode.CompletionItemKind.Event}
+            {label: 'AVATAR_EVENT_CONTROL', kind: vscode.CompletionItemKind.Event},
+            {label: 'SPEAK_EVENT_START', kind: vscode.CompletionItemKind.Event},
+            {label: 'SPEAK_EVENT_STOP', kind: vscode.CompletionItemKind.Event},
+            {label: 'SCREENENCODE_EVENT_START', kind: vscode.CompletionItemKind.Event},
+            {label: 'SCREENENCODE_EVENT_STOP', kind: vscode.CompletionItemKind.Event},
+            {label: 'REMOTE_TRANSFILE_PREPARED', kind: vscode.CompletionItemKind.Event},
+            {label: 'REMOTE_TRANSFILE_FINISHED', kind: vscode.CompletionItemKind.Event},
+            {label: 'CAPTION_EVENT_SETSTYLE', kind: vscode.CompletionItemKind.Event},
+            {label: 'CAPTION_EVENT_START', kind: vscode.CompletionItemKind.Event},
+            {label: 'CAPTION_EVENT_STOP', kind: vscode.CompletionItemKind.Event}                        
          ];
          const completionItemsCommand = [
            {label: 'MODEL_ADD', kind: vscode.CompletionItemKind.Method, documentation: 'hoge'},
@@ -131,7 +140,20 @@ class FstCompletionItemProvider {
            {label: 'MOTIONCAPTURE_START', kind: vscode.CompletionItemKind.Method},
            {label: 'MOTIONCAPTURE_STOP', kind: vscode.CompletionItemKind.Method},
            {label: 'AVATAR_LOGSAVE_START', kind: vscode.CompletionItemKind.Method},
-           {label: 'AVATAR_LOGSAVE_STOP', kind: vscode.CompletionItemKind.Method}
+           {label: 'AVATAR_LOGSAVE_STOP', kind: vscode.CompletionItemKind.Method},
+           {label: 'SPEAK_START', kind: vscode.CompletionItemKind.Method},
+           {label: 'SCREENENCODE_START', kind: vscode.CompletionItemKind.Method},
+           {label: 'SCREENENCODE_STOP', kind: vscode.CompletionItemKind.Method},
+           {label: 'MOTIONCAPTURE_START', kind: vscode.CompletionItemKind.Method},
+           {label: 'MOTIONCAPTURE_STOP', kind: vscode.CompletionItemKind.Method},
+           {label: 'OPEN_CONTENT', kind: vscode.CompletionItemKind.Method},
+           {label: 'WINDOWFRAME', kind: vscode.CompletionItemKind.Method},
+           {label: 'TEXTURE_SETANIMATIONRATE', kind: vscode.CompletionItemKind.Method},
+           {label: 'MODEL_CHANGE_ASYNC', kind: vscode.CompletionItemKind.Method},
+           {label: 'CONFIG_PARALLELSKINNING_THREADS', kind: vscode.CompletionItemKind.Method},
+           {label: 'CAPTION_SETSTYLE', kind: vscode.CompletionItemKind.Method},
+           {label: 'CAPTION_START', kind: vscode.CompletionItemKind.Method},
+           {label: 'CAPTION_STOP', kind: vscode.CompletionItemKind.Method}
        ];
        const completionItemsEps = [
            {label: 'eps>', kind: vscode.CompletionItemKind.Interface}
@@ -463,6 +485,51 @@ class FstSignatureHelpProvider {
             doc  : "Event issued when avatar control was enabled or disabled by AVATAR_CONTROL command. (Plugin_Remote)"
          },
          {
+            name  : "SPEAK_EVENT_START",
+            label : "SPEAK_EVENT_START|model alias",
+            doc  : "Event issued when audio speaking has been started by SPEAK_START. (Plugin_Remote)",
+         },
+         {
+            name  : "SPEAK_EVENT_STOP",
+            label : "SPEAK_EVENT_STOP|model alias",
+            doc  : "Event issued when audio speaking has been finished (Plugin_Remote, WebSocket only)",
+         },
+         {
+            name  : "SCREENENCODE_EVENT_START",
+            label : "SCREENENCODE_EVENT_START",
+            doc  : "Event issued when live screen capture has been started by SCREENENCODE_START (Plugin_Remote, WebSocket only)",
+         },
+         {
+            name  : "SCREENENCODE_EVENT_STOP",
+            label : "SCREENENCODE_EVENT_STOP",
+            doc  : "Event issued when live screen capture has been stopped",
+         },
+         {
+            name  : "REMOTE_TRANSFILE_PREPARED",
+            label : "REMOTE_TRANSFILE_PREPARED|channel name|file path",
+            doc  : "Event issued when this engine has become ready to receive file from remote peer (Plugin_Remote, WebSocket only)",
+         },
+         {
+            name  : "REMOTE_TRANSFILE_FINISHED",
+            label : "REMOTE_TRANSFILE_FINISHED|channel name|file path",
+            doc  : "Event issued when this engine has become ready to receive file from remote peer (Plugin_Remote, WebSocket only)",
+         },
+         {
+            name  : "CAPTION_EVENT_SETSTYLE",
+            label : "CAPTION_EVENT_SETSTYLE|style alias",
+            doc  : "Event issued when a style of caption with the alias name has been set.",
+         },
+         {
+            name  : "CAPTION_EVENT_START",
+            label : "CAPTION_EVENT_START|caption alias",
+            doc  : "Event issued when a caption of the alias name has been start showing.",
+         },
+         {
+            name  : "CAPTION_EVENT_STOP",
+            label : "CAPTION_EVENT_STOP|caption alias",
+            doc  : "Event issued when a caption of the name has been disappered.",
+         },
+         {
             name  : "MODEL_ADD",
             label : "MODEL_ADD|model alias|file.pmd|(x,y,z)|(rx,ry,rz)|(ON or OFF for cartoon)|(parent model alias)|(parent bone name)",
             doc   : "Add a 3D model into the scene." 
@@ -766,6 +833,71 @@ class FstSignatureHelpProvider {
             name  : "AVATAR_LOGSAVE_STOP",
             label : "AVATAR_LOGSAVE_STOP",
             doc   : "Stop saving messages sent from avatar control peer to file." 
+         },
+         {
+            name  : "SPEAK_START",
+            label : "SPEAK_START|model alias|audio file",
+            doc   : "Start playing the audio file, with auto lipsync for the model." 
+         },
+         {
+            name  : "SCREENENCODE_START",
+            label : "SCREENENCODE_START|(ID of camera, -1 to disable)|bitrate|fps|base_width|base_height|camera_zoomrate",
+            doc   : "Start live screen encoding and sending.  Valid for WebSocket only." 
+         },
+         {
+            name  : "SCREENENCODE_STOP",
+            label : "SCREENENCODE_STOP",
+            doc   : "Stop live screen encoding previously started by SCREENENCODE_START." 
+         },
+         {
+            name  : "MOTIONCAPTURE_START",
+            label : "MOTIONCAPTURE_START|model alias|filename.vmd",
+            doc   : "Start capturing motions of the model from now and save it to the file." 
+         },
+         {
+            name  : "MOTIONCAPTURE_STOP",
+            label : "MOTIONCAPTURE_STOP|model alias",
+            doc   : "Finish capturing motion previously started by MOTIONCAPTURE_START." 
+         },
+         {
+            name  : "OPEN_CONTENT",
+            label : "OPEN_CONTENT|relative_mdf_path",
+            doc   : "Newly open the .mdf file.  The current content will be closed instead." 
+         },
+         {
+            name  : "WINDOWFRAME",
+            label : "WINDOWFRAME|filename.png",
+            doc   : "Put window frame at screen." 
+         },
+         {
+            name  : "TEXTURE_SETANIMATIONRATE",
+            label : "TEXTURE_SETANIMATIONRATE|model alias|textureFileName|rate",
+            doc   : "Set animation speed of a APNG texture on a model.  The texture file name should be exactly the same as one specified within the model.  Rate of 0.0 means stop animation, 1.0 means animation at normal speed." 
+         },
+         {
+            name  : "MODEL_CHANGE_ASYNC",
+            label : "MODEL_CHANGE_ASYNC|model alias|filename.pmd",
+            doc   : "Asynchronous version of MODEL_CHANGE.  This would not block main thread." 
+         },
+         {
+            name  : "CONFIG_PARALLELSKINNING_THREADS",
+            label : "CONFIG_PARALLELSKINNING_THREADS|threadnum",
+            doc   : "Change number of CPU threads for skinning.  Default is 1 (no parallel skinning).  Large 3D models (>200k surfaces) may need to set this to 2 or more." 
+         },
+         {
+            name  : "CAPTION_SETSTYLE",
+            label : "CAPTION_SETSTYLE|style_alias|font|color|edge1|edge2|basecolor",
+            doc   : "Define a caption style.  color is (r,g,b,a) and edge is (r,g,b,a,size)" 
+         },
+         {
+            name  : "CAPTION_START",
+            label : "CAPTION_START|alias|style_alias|text|size|align|height|duration",
+            doc   : "Start showing caption of the text on screen. align should be either of CENTER, LEFT or RIGHT.  height is relative value [0-1] where bottom is 0 and top is 1.  Duration should be given in frames (30.0 = 1 sec.)"
+         },
+         {
+            name  : "CAPTION_STOP",
+            label : "CAPTION_STOP|alias",
+            doc   : "Stop and delete the caption." 
          }
       ];
       const line = document.lineAt(position.line);
@@ -872,12 +1004,12 @@ function checker (document) {
       if (! fromList.includes(match[2])) {
          const startPos = document.positionAt(match.index + match[1].length);
          const endPos = document.positionAt(match.index + match[1].length + match[2].length);
-         const diagnostic = new vscode.Diagnostic(new vscode.Range(startPos, endPos), "No definition begins with state \'" + match[2] +"\', exec will stop at the state", vscode.DiagnosticSeverity.Warning);
+         const diagnostic = new vscode.Diagnostic(new vscode.Range(startPos, endPos), "No definition begins with state \'" + match[2] +"\', exec may stop at the state", vscode.DiagnosticSeverity.Warning);
          diagnostics.push(diagnostic);
       }
    }
    if (hasInitialState == 0) {
-      const diagnostic = new vscode.Diagnostic(new vscode.Range(0,0,1,0), "Initial state \"0\" not found", vscode.DiagnosticSeverity.Error);
+      const diagnostic = new vscode.Diagnostic(new vscode.Range(0,0,1,0), "Initial state \"0\" not exist", vscode.DiagnosticSeverity.Error);
       diagnostics.push(diagnostic);
    }
    diagnosticCollection.set(document.uri, diagnostics);
