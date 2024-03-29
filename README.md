@@ -47,3 +47,10 @@ Update version.
 
 - More commands
 - added "%INCLUDE"
+
+### 1.2.2
+
+Updated version.
+
+- More commands
+- MMDAgent-EX 1.0.3 compliant
