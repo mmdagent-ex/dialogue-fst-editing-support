@@ -54,3 +54,9 @@ Updated version.
 
 - More commands
 - MMDAgent-EX 1.0.3 compliant
+
+### 1.2.3
+
+Updated version.
+
+- MMDAgent-EX 1.0.4 compliant
