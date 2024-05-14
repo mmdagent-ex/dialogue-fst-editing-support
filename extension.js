@@ -142,6 +142,7 @@ class FstCompletionItemProvider {
            {label: 'AVATAR_LOGSAVE_START', kind: vscode.CompletionItemKind.Method},
            {label: 'AVATAR_LOGSAVE_STOP', kind: vscode.CompletionItemKind.Method},
            {label: 'SPEAK_START', kind: vscode.CompletionItemKind.Method},
+           {label: 'SPEAK_STOP', kind: vscode.CompletionItemKind.Method},
            {label: 'SCREENENCODE_START', kind: vscode.CompletionItemKind.Method},
            {label: 'SCREENENCODE_STOP', kind: vscode.CompletionItemKind.Method},
            {label: 'MOTIONCAPTURE_START', kind: vscode.CompletionItemKind.Method},
@@ -157,7 +158,9 @@ class FstCompletionItemProvider {
            {label: 'NOTIFY_SHOW', kind: vscode.CompletionItemKind.Method},
            {label: 'REMOTEKEY_CHAR', kind: vscode.CompletionItemKind.Method},
            {label: 'REMOTEKEY_DOWN', kind: vscode.CompletionItemKind.Method},
-           {label: 'REMOTEKEY_UP', kind: vscode.CompletionItemKind.Method}
+           {label: 'REMOTEKEY_UP', kind: vscode.CompletionItemKind.Method},
+           {label: 'WEBCAM_START', kind: vscode.CompletionItemKind.Method},
+           {label: 'WEBCAM_STOP', kind: vscode.CompletionItemKind.Method}
        ];
        const completionItemsEps = [
            {label: 'eps>', kind: vscode.CompletionItemKind.Interface}
@@ -496,7 +499,7 @@ class FstSignatureHelpProvider {
          {
             name  : "SPEAK_EVENT_STOP",
             label : "SPEAK_EVENT_STOP|model alias",
-            doc  : "Event issued when audio speaking has been finished (Plugin_Remote, WebSocket only)",
+            doc  : "Event issued when audio speaking has been finished or stopped (Plugin_Remote, WebSocket only)",
          },
          {
             name  : "SCREENENCODE_EVENT_START",
@@ -844,6 +847,11 @@ class FstSignatureHelpProvider {
             doc   : "Start playing the audio file, with auto lipsync for the model." 
          },
          {
+            name  : "SPEAK_STOP",
+            label : "SPEAK_STOP|model alias",
+            doc   : "Stop speaking having invoked by SPEAK_START. Do nothing when not playing." 
+         },
+         {
             name  : "SCREENENCODE_START",
             label : "SCREENENCODE_START|(ID of camera, -1 to disable)|bitrate|fps|base_width|base_height|camera_zoomrate",
             doc   : "Start live screen encoding and sending.  Valid for WebSocket only." 
@@ -922,7 +930,17 @@ class FstSignatureHelpProvider {
             name  : "REMOTEKEY_UP",
             label : "REMOTEKEY_UP|key_code_string",
             doc   : "Send key up event of the specified code name." 
-         }
+         },
+         {
+            name  : "WEBCAM_START",
+            label : "WEBCAM_START",
+            doc   : "Start screen capture and streaming to virtual webcam named \"DirectShow Softcam\".  Needs softcam installed.  (Plugin_Webcam)." 
+         },
+         {
+            name  : "WEBCAM_STOP",
+            label : "WEBCAM_STOP",
+            doc   : "Stop virtual webcam streaming (Plugin_Webcam)." 
+         }        
       ];
       const line = document.lineAt(position.line);
       if (!line.text.substr(0, position.character).match(/\|/)) return vscode.reject('no open parenthesis before cursor');
