@@ -60,3 +60,7 @@ Updated version.
 Updated version.
 
 - MMDAgent-EX 1.0.4 compliant
+
+### 1.2.5
+
+- Added TRANSPARENT_START and TRANSPARENT_STOP

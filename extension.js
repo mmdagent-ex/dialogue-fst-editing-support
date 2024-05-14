@@ -160,7 +160,9 @@ class FstCompletionItemProvider {
            {label: 'REMOTEKEY_DOWN', kind: vscode.CompletionItemKind.Method},
            {label: 'REMOTEKEY_UP', kind: vscode.CompletionItemKind.Method},
            {label: 'WEBCAM_START', kind: vscode.CompletionItemKind.Method},
-           {label: 'WEBCAM_STOP', kind: vscode.CompletionItemKind.Method}
+           {label: 'WEBCAM_STOP', kind: vscode.CompletionItemKind.Method},
+           {label: 'TRANSPARENT_START', kind: vscode.CompletionItemKind.Method},
+           {label: 'TRANSPARENT_STOP', kind: vscode.CompletionItemKind.Method}
        ];
        const completionItemsEps = [
            {label: 'eps>', kind: vscode.CompletionItemKind.Interface}
@@ -940,6 +942,16 @@ class FstSignatureHelpProvider {
             name  : "WEBCAM_STOP",
             label : "WEBCAM_STOP",
             doc   : "Stop virtual webcam streaming (Plugin_Webcam)." 
+         },
+         {
+            name  : "TRANSPARENT_START",
+            label : "TRANSPARENT_START|(color)",
+            doc   : "Make the app window transparent (Windows only).  Can specify additional RGB color as transparent color, else default color is used." 
+         },
+         {
+            name  : "TRANSPARENT_STOP",
+            label : "TRANSPARENT_STOP",
+            doc   : "Revert the app window to non-transparent (Windows only)." 
          }        
       ];
       const line = document.lineAt(position.line);
