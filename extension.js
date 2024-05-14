@@ -153,7 +153,11 @@ class FstCompletionItemProvider {
            {label: 'CONFIG_PARALLELSKINNING_THREADS', kind: vscode.CompletionItemKind.Method},
            {label: 'CAPTION_SETSTYLE', kind: vscode.CompletionItemKind.Method},
            {label: 'CAPTION_START', kind: vscode.CompletionItemKind.Method},
-           {label: 'CAPTION_STOP', kind: vscode.CompletionItemKind.Method}
+           {label: 'CAPTION_STOP', kind: vscode.CompletionItemKind.Method},
+           {label: 'NOTIFY_SHOW', kind: vscode.CompletionItemKind.Method},
+           {label: 'REMOTEKEY_CHAR', kind: vscode.CompletionItemKind.Method},
+           {label: 'REMOTEKEY_DOWN', kind: vscode.CompletionItemKind.Method},
+           {label: 'REMOTEKEY_UP', kind: vscode.CompletionItemKind.Method}
        ];
        const completionItemsEps = [
            {label: 'eps>', kind: vscode.CompletionItemKind.Interface}
@@ -886,18 +890,38 @@ class FstSignatureHelpProvider {
          },
          {
             name  : "CAPTION_SETSTYLE",
-            label : "CAPTION_SETSTYLE|style_alias|font|color|edge1|edge2|basecolor",
+            label : "CAPTION_SETSTYLE|style_alias|font|color|(edge1)|(edge2)|(basecolor)",
             doc   : "Define a caption style.  color is (r,g,b,a) and edge is (r,g,b,a,size)" 
          },
          {
             name  : "CAPTION_START",
-            label : "CAPTION_START|alias|style_alias|text|size|align|height|duration",
+            label : "CAPTION_START|alias|style_alias|text_or_lrcFile|size|align|height|duration",
             doc   : "Start showing caption of the text on screen. align should be either of CENTER, LEFT or RIGHT.  height is relative value [0-1] where bottom is 0 and top is 1.  Duration should be given in frames (30.0 = 1 sec.)"
          },
          {
             name  : "CAPTION_STOP",
             label : "CAPTION_STOP|alias",
             doc   : "Stop and delete the caption." 
+         },
+         {
+            name  : "NOTIFY_SHOW",
+            label : "NOTIFY_SHOW|text|(seconds)",
+            doc   : "Show notification text on screen, which autonmatically dissapears at 2 seconds (or seconds specified)." 
+         },
+         {
+            name  : "REMOTEKEY_CHAR",
+            label : "REMOTEKEY_CHAR|character",
+            doc   : "Send keyboard input of the specified letter." 
+         },
+         {
+            name  : "REMOTEKEY_DOWN",
+            label : "REMOTEKEY_DOWN|key_code_string",
+            doc   : "Send key down event of the specified code name." 
+         },
+         {
+            name  : "REMOTEKEY_UP",
+            label : "REMOTEKEY_UP|key_code_string",
+            doc   : "Send key up event of the specified code name." 
          }
       ];
       const line = document.lineAt(position.line);
