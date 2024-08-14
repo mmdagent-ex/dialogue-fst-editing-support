@@ -77,7 +77,9 @@ class FstCompletionItemProvider {
             {label: 'REMOTE_TRANSFILE_FINISHED', kind: vscode.CompletionItemKind.Event},
             {label: 'CAPTION_EVENT_SETSTYLE', kind: vscode.CompletionItemKind.Event},
             {label: 'CAPTION_EVENT_START', kind: vscode.CompletionItemKind.Event},
-            {label: 'CAPTION_EVENT_STOP', kind: vscode.CompletionItemKind.Event}                        
+            {label: 'CAPTION_EVENT_STOP', kind: vscode.CompletionItemKind.Event},
+            {label: 'WINDOWFRAME_EVENT_ADD', kind: vscode.CompletionItemKind.Event},
+            {label: 'WINDOWFRAME_EVENT_DELETE', kind: vscode.CompletionItemKind.Event}
          ];
          const completionItemsCommand = [
            {label: 'MODEL_ADD', kind: vscode.CompletionItemKind.Method, documentation: 'hoge'},
@@ -162,7 +164,10 @@ class FstCompletionItemProvider {
            {label: 'WEBCAM_START', kind: vscode.CompletionItemKind.Method},
            {label: 'WEBCAM_STOP', kind: vscode.CompletionItemKind.Method},
            {label: 'TRANSPARENT_START', kind: vscode.CompletionItemKind.Method},
-           {label: 'TRANSPARENT_STOP', kind: vscode.CompletionItemKind.Method}
+           {label: 'TRANSPARENT_STOP', kind: vscode.CompletionItemKind.Method},
+           {label: 'WINDOWFRAME_ADD', kind: vscode.CompletionItemKind.Method},
+           {label: 'WINDOWFRAME_DELETE', kind: vscode.CompletionItemKind.Method},
+           {label: 'WINDOWFRAME_DELETEALL', kind: vscode.CompletionItemKind.Method}
        ];
        const completionItemsEps = [
            {label: 'eps>', kind: vscode.CompletionItemKind.Interface}
@@ -537,6 +542,16 @@ class FstSignatureHelpProvider {
             name  : "CAPTION_EVENT_STOP",
             label : "CAPTION_EVENT_STOP|caption alias",
             doc  : "Event issued when a caption of the name has been disappered.",
+         },
+         {
+            name  : "WINDOWFRAME_EVENT_ADD",
+            label : "WINDOWFRAME_EVENT_ADD|frame alias",
+            doc  : "Event issued when a window frame of the name has been added.",
+         },
+         {
+            name  : "WINDOWFRAME_EVENT_DELETE",
+            label : "WINDOWFRAME_EVENT_DELETE|frame alias",
+            doc  : "Event issued when a window frame of the name has been deleted.",
          },
          {
             name  : "MODEL_ADD",
@@ -952,7 +967,22 @@ class FstSignatureHelpProvider {
             name  : "TRANSPARENT_STOP",
             label : "TRANSPARENT_STOP",
             doc   : "Revert the app window to non-transparent (Windows only)." 
-         }        
+         },
+         {
+            name  : "WINDOWFRAME_ADD",
+            label : "WINDOWFRAME_ADD|frame alias|image.png",
+            doc   : "Add a image as window frame with the specified alias." 
+         },
+         {
+            name  : "WINDOWFRAME_DELETE",
+            label : "WINDOWFRAME_DELETE|frame alias",
+            doc   : "Delete the window frame of the specified alias." 
+         },
+         {
+            name  : "WINDOWFRAME_DELETEALL",
+            label : "WINDOWFRAME_DELETEALL",
+            doc   : "Delete all window frames." 
+         }
       ];
       const line = document.lineAt(position.line);
       if (!line.text.substr(0, position.character).match(/\|/)) return vscode.reject('no open parenthesis before cursor');
