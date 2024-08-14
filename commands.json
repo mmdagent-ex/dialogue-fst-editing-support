@@ -1,0 +1,948 @@
+[
+    {
+        "name"   : "MODEL_EVENT_ADD",
+        "format" : "MODEL_EVENT_ADD|model alias",
+        "doc"    : "Event issued when a 3D model was added.", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "MODEL_EVENT_CHANGE",
+        "format" : "MODEL_EVENT_CHANGE|model alias",
+        "doc"    : "Event issued when a 3D model was changed.", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "MODEL_EVENT_DELETE",
+        "format" : "MODEL_EVENT_DELETE|model alias",
+        "doc"    : "Event issued when a 3D model was deleted from scene.", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "MODEL_EVENT_SELECT",
+        "format" : "MODEL_EVENT_SELECT|model alias",
+        "doc"    : "Event issued when a 3D model is selected by double-tap."
+    },
+    {
+        "name"   : "MODEL_EVENT_BINDBONE",
+        "format" : "MODEL_EVENT_BINDBONE|model alias|bone name",
+        "doc"    : "Event issued when MODEL_BINDBONE was successfully finished.", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "MODEL_EVENT_BINDFACE",
+        "format" : "MODEL_EVENT_BINDFACE|model alias|face name",
+        "doc"    : "Event issued when MODEL_BINDFACE was successfully finished.", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "MODEL_EVENT_UNBINDBONE",
+        "format" : "MODEL_EVENT_UNBINDBONE|model alias|bone name",
+        "doc"    : "Event issued when MODEL_UNBINDBONE was successfully finished.", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "MODEL_EVENT_UNBINDFACE",
+        "format" : "MODEL_EVENT_UNBINDFACE|model alias|face name",
+        "doc"    : "Event issued when MODEL_UNBINDFACE was successfully finished.", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "MOTION_EVENT_ADD",
+        "format" : "MOTION_EVENT_ADD|model alias|motion alias",
+        "doc"    : "Event issued when a motion was newly added and started on the model.", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "MOTION_EVENT_CHANGE",
+        "format" : "MOTION_EVENT_CHANGE|model alias|motion alias",
+        "doc"    : "Event issued when a playing motion was changed", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "MOTION_EVENT_ACCELERATE",
+        "format" : "MOTION_EVENT_ACCELERATE|model alias|motion alias",
+        "doc"    : "Event issued when a motion's accelleration was assigned by MOTION_ACCELERATE", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "MOTION_EVENT_RESET",
+        "format" : "MOTION_EVENT_RESET|model alias|motion alias",
+        "doc"    : "Event issued when a motion was resetted and restarted", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "MOTION_EVENT_DELETE",
+        "format" : "MOTION_EVENT_DELETE|model alias|motion alias",
+        "doc"    : "Event issued when a motion was deleted by finished playing or deletion command", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "MOTION_EVENT_CONFIGURE",
+        "format" : "MOTION_EVENT_CONFIGURE|model alias|motion alias",
+        "doc"    : "Event issued when a motion's blending mode was changed by MOTION_CONFIGURE", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "MOVE_EVENT_START",
+        "format" : "MOVE_EVENT_START|model alias",
+        "doc"    : "Event issued when a 3D model starts moving by MOVE_START", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "MOVE_EVENT_STOP",
+        "format" : "MOVE_EVENT_STOP|model alias",
+        "doc"    : "Event issued when a 3D model finished movement triggered by MOVE_START (reached end or forced to stop by MOVE_STOP)", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "TURN_EVENT_START",
+        "format" : "TURN_EVENT_START|model alias",
+        "doc"    : "Event issued when a 3D model starts turning by TURN_START", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "TURN_EVENT_STOP",
+        "format" : "TURN_EVENT_STOP|model alias",
+        "doc"    : "Event issued when a 3D model finished turning triggered by TURN_START", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "ROTATE_EVENT_START",
+        "format" : "ROTATE_EVENT_START|model alias",
+        "doc"    : "Event issued when a 3D model starts rotating by ROTATE_START", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "ROTATE_EVENT_STOP",
+        "format" : "ROTATE_EVENT_STOP|model alias",
+        "doc"    : "Event issued when a 3D model finished rotation issued by ROTATE_START", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "LIPSYNC_EVENT_START",
+        "format" : "LIPSYNC_EVENT_START|mode aliasl",
+        "doc"    : "Event issued when a 3D model started lip syncing by LIPSYNC_START", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "LIPSYNC_EVENT_STOP",
+        "format" : "LIPSYNC_EVENT_STOP|model alias",
+        "doc"    : "Event issued when finished playing a lip syncing started by LIPSYNC_START", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "PLUGIN_EVENT_ENABLE",
+        "format" : "PLUGIN_EVENT_ENABLE|plugin name",
+        "doc"    : "Event issued when a plug-in started working", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "PLUGIN_EVENT_DISABLE",
+        "format" : "PLUGIN_EVENT_DISABLE|plugin name",
+        "doc"    : "Event issued when a plug-in stopped working", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "DRAGANDDROP",
+        "format" : "DRAGANDDROP|file path",
+        "doc"    : "Event issued when a file was dropped to the window by user", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "KEY",
+        "format" : "KEY|character",
+        "doc"    : "Event issued when a key was pressed by user", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "SCREEN_EVENT_LONGPRESSED",
+        "format" : "SCREEN_EVENT_LONGPRESSED|xxxx_yyyy_wwww_hhhh",
+        "doc"    : "Event issued when a user long-tapped at a position (x, y) of the screen (w, h)", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "SCREEN_EVENT_LONGRELEASED",
+        "format" : "SCREEN_EVENT_LONGRELEASED|xxxx_yyyy_wwww_hhhh",
+        "doc"    : "Event issued when a user's long-tap was released at a position (x, y) of the screen (w, h)", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "BUTTON_EVENT_ADD",
+        "format" : "BUTTON_EVENT_ADD|button alias",
+        "doc"    : "Event issued when the button being added by BUTTON_ADD becomes shown and active on screen", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "BUTTON_EVENT_EXEC",
+        "format" : "BUTTON_EVENT_EXEC|button alias",
+        "doc"    : "Event issued when user tapped the button", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "BUTTON_EVENT_DELETE",
+        "format" : "BUTTON_EVENT_DELETE|button alias",
+        "doc"    : "Event issued when the button was deleted by tap action or BUTTON_DELETE", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "MENU_EVENT",
+        "format" : "MENU_EVENT|ADD or DELETE or SETITEM or DELETEITEM|menu alias|(id)",
+        "doc"    : "Event issued when a menu was changed by MENU command", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "PROMPT_EVENT_SELECTED",
+        "format" : "PROMPT_EVENT_SELECTED|number",
+        "doc"    : "number > 0 means user has tapped one of the selection of a prompt shown by PROMPT_SHOW. -1 means cancelltation", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "INFOTEXT_EVENT_SHOW",
+        "format" : "",
+        "doc"    : "Event issued when a full-screen document is being shown by INFOTEXT_FILE or INFOTEXT_STRING", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "INFOTEXT_EVENT_CLOSE",
+        "format" : "INFOTEXT_EVENT_CLOSE|selected button label string",
+        "doc"    : "Event issued when a full-screen document was closed by user tapping one of the button.  The selectedButtonLabel is the label of the button user has tapped", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "RECOG_EVENT_START",
+        "format" : "RECOG_EVENT_START",
+        "doc"    : "Event issued when audio input was detected and speech recognition has been started. (Plugin_Julius)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "RECOG_EVENT_STOP",
+        "format" : "RECOG_EVENT_STOP|w1,w2,...",
+        "doc"    : "Gives recognition result after end of speech was detected. (Plugin_Julius or equivalent)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "RECOG_EVENT_OVERFLOW",
+        "format" : "RECOG_EVENT_OVERFLOW",
+        "doc"    : "Event issued when audio input is too loud to recognize. (Plugin_Julius or equivalent)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "RECOG_EVENT_GMM",
+        "format" : "RECOG_EVENT_GMM|gmm name",
+        "doc"    : "When GMM audio identification is enabled, gives identification result with the name of the GMM model.  Will be issued just before RECOG_EVENT_STOP. (Plugin_Julius or equivalent)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "RECOG_EVENT_AWAY",
+        "format" : "RECOG_EVENT_AWAY|ON or OFF",
+        "doc"    : "Event issued when AWAY status was changed to the value. (Plugin_Julius or equivalent)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "RECOG_EVENT_MODIFY",
+        "format" : "RECOG_EVENT_MODIFY|GAIN or USERDICT_SET or USERDICT_UNSET or CHANGE_CONF|(config name)",
+        "doc"    : "Event issued when configuration was changed by RECOG_MODIFY.  \"confName\" is valid for CHANGE_CONF only.  (Plugin_Julius or equivalent)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "SYNTH_EVENT_START",
+        "format" : "SYNTH_EVENT_START|model alias",
+        "doc"    : "Event issued when a model starts talking by speech synthesis. (Plugin_Open_JTalk or equivalent)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "SYNTH_EVENT_STOP",
+        "format" : "SYNTH_EVENT_STOP|model alias",
+        "doc"    : "Event issued when a model finished talking by speech synthesis. (Plugin_Open_JTalk or equivalent)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "SOUND_EVENT_START",
+        "format" : "SOUND_EVENT_START|sound alias",
+        "doc"    : "Event issued when a sound starts playing by SOUND_START (Plugin_Audio)", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "SOUND_EVENT_STOP",
+        "format" : "SOUND_EVENT_STOP|sound alias",
+        "doc"    : "Event issued when a sound being played by SOUND_START finished playing. (Plugin_Audio)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "VALUE_EVENT_SET",
+        "format" : "VALUE_EVENT_SET|variable name",
+        "doc"    : "Event issued when a value was set to the variable name by VALUE_SET. (Plugin_Variables)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "VALUE_EVENT_UNSET",
+        "format" : "VALUE_EVENT_UNSET|variable name",
+        "doc"    : "Event issued when the variable was unset by VALUE_UNSET. (Plugin_Variables)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "VALUE_EVENT_EVAL",
+        "format" : "VALUE_EVENT_EVAL|variable name|EQ or NE or LE or LT or GE or GT|value|TRUE or FALSE",
+        "doc"    : "Tells result of VALUE_EVAL.  The arguments will \"value\" is the evaluated equation itself, and the final argument shows the result. (Plugin_Variables)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "TIMER_EVENT_START",
+        "format" : "TIMER_EVENT_START|variable name",
+        "doc"    : "Event issued when a value is set to the timer variable and starts. (Plugin_Variables)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "TIMER_EVENT_STOP",
+        "format" : "TIMER_EVENT_STOP|variable name",
+        "doc"    : "Event issued when a timer variable's count down value has reached 0. (Plugin_Variables)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "TIMER_EVENT_CANCELLED",
+        "format" : "TIMER_EVENT_CANCELLED|variable name",
+        "doc"    : "Event issued when a count down has been cancelled before reaching 0 due to unset or setting another value. (Plugin_Variables)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "TEXTAREA_EVENT_ADD",
+        "format" : "TEXTAREA_EVENT_ADD|textarea name",
+        "doc"    : "Event issued when a TEXTAREA has been added by TEXTAREA_ADD. (Plugin_TextArea)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "TEXTAREA_EVENT_SET",
+        "format" : "TEXTAREA_EVENT_SET|textarea name",
+        "doc"    : "Event issued when a TEXTAREA was assigned a text by TEXTAREA_SET. (Plugin_TextArea)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "TEXTAREA_EVENT_DELETE",
+        "format" : "TEXTAREA_EVENT_DELETE|textarea name",
+        "doc"    : "Event issued when a TEXTAREA was deleted. (Plugin_TextArea)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "NETWORK_EVENT_GET",
+        "format" : "NETWORK_EVENT_GET|network get alias",
+        "doc"    : "Event issued when fetching a URL to file issued by NETWORK_GET has finished. (Plugin_Network)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "CURRENT_TIME",
+        "format" : "CURRENT_TIME|hour|min",
+        "doc"    : "Event issued periodically telling the current local time", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "TAPPED",
+        "format" : "TAPPED|x|y",
+        "doc"    : "Event issued when a user tapped a screen at the position", 
+        "label"  : "event"
+    },
+    {
+        "name"   : "REMOTE_EVENT_CONNECTED",
+        "format" : "REMOTE_EVENT_CONNECTED|host name",
+        "doc"    : "Event issued when a peer was connected. (Plugin_Remote)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "REMOTE_EVENT_DISCONNECTED",
+        "format" : "REMOTE_EVENT_DISCONNECTED|host name",
+        "doc"    : "Event issued when a connecting peer has been disconnected. (Plugin_Remote)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "AVATAR",
+        "format" : "AVATAR|START or END",
+        "doc"    : "Event issued when an avatar control start / end singal was received from remote host. (Plugin_Remote)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "AVATAR_EVENT_CONTROL",
+        "format" : "AVATAR_EVENT_CONTROL|ENABLED or DISABLED",
+        "doc"    : "Event issued when avatar control was enabled or disabled by AVATAR_CONTROL command. (Plugin_Remote)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "SPEAK_EVENT_START",
+        "format" : "SPEAK_EVENT_START|model alias",
+        "doc"    : "Event issued when audio speaking has been started by SPEAK_START. (Plugin_Remote)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "SPEAK_EVENT_STOP",
+        "format" : "SPEAK_EVENT_STOP|model alias",
+        "doc"    : "Event issued when audio speaking has been finished or stopped (Plugin_Remote, WebSocket only)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "SCREENENCODE_EVENT_START",
+        "format" : "SCREENENCODE_EVENT_START",
+        "doc"    : "Event issued when live screen capture has been started by SCREENENCODE_START (Plugin_Remote, WebSocket only)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "SCREENENCODE_EVENT_STOP",
+        "format" : "SCREENENCODE_EVENT_STOP",
+        "doc"    : "Event issued when live screen capture has been stopped",
+        "label"  : "event"
+    },
+    {
+        "name"   : "REMOTE_TRANSFILE_PREPARED",
+        "format" : "REMOTE_TRANSFILE_PREPARED|channel name|file path",
+        "doc"    : "Event issued when this engine has become ready to receive file from remote peer (Plugin_Remote, WebSocket only)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "REMOTE_TRANSFILE_FINISHED",
+        "format" : "REMOTE_TRANSFILE_FINISHED|channel name|file path",
+        "doc"    : "Event issued when this engine has become ready to receive file from remote peer (Plugin_Remote, WebSocket only)",
+        "label"  : "event"
+    },
+    {
+        "name"   : "CAPTION_EVENT_SETSTYLE",
+        "format" : "CAPTION_EVENT_SETSTYLE|style alias",
+        "doc"    : "Event issued when a style of caption with the alias name has been set.",
+        "label"  : "event"
+    },
+    {
+        "name"   : "CAPTION_EVENT_START",
+        "format" : "CAPTION_EVENT_START|caption alias",
+        "doc"    : "Event issued when a caption of the alias name has been start showing.",
+        "label"  : "event"
+    },
+    {
+        "name"   : "CAPTION_EVENT_STOP",
+        "format" : "CAPTION_EVENT_STOP|caption alias",
+        "doc"    : "Event issued when a caption of the name has been disappered.",
+        "label"  : "event"
+    },
+    {
+        "name"   : "WINDOWFRAME_EVENT_ADD",
+        "format" : "WINDOWFRAME_EVENT_ADD|frame alias",
+        "doc"    : "Event issued when a window frame of the name has been added.",
+        "label"  : "event"
+    },
+    {
+        "name"   : "WINDOWFRAME_EVENT_DELETE",
+        "format" : "WINDOWFRAME_EVENT_DELETE|frame alias",
+        "doc"    : "Event issued when a window frame of the name has been deleted.",
+        "label"  : "event"
+    },
+    {
+        "name"   : "MODEL_ADD",
+        "format" : "MODEL_ADD|model alias|file.pmd|(x,y,z)|(rx,ry,rz)|(ON or OFF for cartoon)|(parent model alias)|(parent bone name)",
+        "doc"    : "Add a 3D model into the scene.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MODEL_CHANGE",
+        "format" : "MODEL_CHANGE|model alias|file.pmd",
+        "doc"    : "Change 3D model of the alias, keeping status.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MODEL_DELETE",
+        "format" : "MODEL_DELETE|model alias",
+        "doc"    : "Delete a 3D model from the scene.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MODEL_BINDBONE",
+        "format" : "MODEL_BINDBONE|keyvalue name|min|max|model alias|bone name|x1,y1,z1|rx1,ry1,rz1|x2,y2,z2|rx2,ry2,rz2",
+        "doc"    : "Bind a KeyValue [min..max] to a bone movement rating from pos1/rot1 to pos2/rot2.  Another usage is \"MODEL_BINDBONE|model alias|bone name|x,y,z|rx,ry,rz\" to force fixed pos/rot.  This setting overwrites all motion control.  When multiplied, only the last one will be valid.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MODEL_BINDFACE",
+        "format" : "MODEL_BINDFACE|keyvalue name|min|max|model alias|face name|rate1|rate2",
+        "doc"    : "Bind a KeyValue [min..max] to a face rate from rate1 to rate2.  Another usage is \"MODEL_BINDFACE|model alias|face name|rate\" to force the fixed rate. This setting overwrites all motion control. When multiplied, only the last one will be valid.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MODEL_UNBINDBONE",
+        "format" : "MODEL_UNBINDBONE|model alias|bone name",
+        "doc"    : "Remove bone binding.  If not binded, do nothing.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MODEL_UNBINDFACE",
+        "format" : "MODEL_UNBINDFACE|model alias|face name",
+        "doc"    : "Remove face binding.  If not binded, do nothing.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MOTION_ADD",
+        "format" : "MOTION_ADD|model alias|motion alias|file.vmd|(FULL or PART)|(ONCE or LOOP)|(ON or OFF for smoothing)|(ON or OFF for reposition)|(priority)",
+        "doc"    : "Add a new motion to the model.  Default priority is 0, motion of higher priority will supersede lower ones (with the same priority, later one will supersede).",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MOTION_CHANGE",
+        "format" : "MOTION_CHANGE|model alias|motion alias|file.vmd",
+        "doc"    : "Swap the content of the playing motion, keeping its status.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MOTION_ACCELERATE",
+        "format" : "MOTION_ACCELERATE|model alias|motion alias|speed|(duration)|(target)",
+        "doc"    : "Change motion speed.  Default speed is 1.0.  \"duration\" is time duration in seconds used for smooth speed change (0 means immediate change). \"target\" is point in the plyaing motion to start speed change in seconds.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MOTION_RESET",
+        "format" : "MOTION_RESET|model alias|motion alias",
+        "doc"    : "Rewind the playing motion to the starting frame, keeping its status.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MOTION_DELETE",
+        "format" : "MOTION_DELETE|model alias|motion alias",
+        "doc"    : "Delete the playing motion.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MOTION_CONFIGURE",
+        "format" : "MOTION_CONFIGURE|model alias|motion alias|COMMAND|(rate)",
+        "doc"    : "Configure how the motion should be blended.  \"COMMAND\" should be one of \"MODE_REPLACE\", \"MODE_ADD\" or \"BLEND_RATE\" with additional rate parameter.  You can also set per-bone, per-face setting by replacing \"COMMAND|(rate)\" with \"MODE_{BONE|FACE}_{REPLACE|ADD|NONE}|name[,name,..]\".",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MOVE_START",
+        "format" : "MOVE_START|model alias|x,y,z|(GLOBAL or LOCAL)|(speed)",
+        "doc"    : "Start Moving the model position toward the position. Setting the speed in distance per second enables moving with fixed speed.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MOVE_STOP",
+        "format" : "MOVE_STOP|model alias",
+        "doc"    : "Force stop moving the model.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "TURN_START",
+        "format" : "TURN_START|model alias|x,y,z|(GLOBAL or LOCAL)|(speed)",
+        "doc"    : "Start rotating the model to face toward the given position. Setting the speed in degree per second enabled rotating with fixed speed.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "TURN_STOP",
+        "format" : "TURN_STOP|model alias",
+        "doc"    : "Force stop turning the model.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "ROTATE_START",
+        "format" : "ROTATE_START|model alias|rx,ry,rz|(GLOBAL or LOCAL)|(speed)",
+        "doc"    : "Start rotating the model by the given rotation. Setting the speed in degree per second enabled rotating with fixed speed.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "ROTATE_STOP",
+        "format" : "ROTATE_STOP",
+        "doc"    : "Stop rotating the model.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "STAGE",
+        "format" : "STAGE|file.pmd or file.xpmd or floorImagefile,backImagefile",
+        "doc"    : "Set stage.  \"file.pmd\" and \"file.xpmd\" loads a 3D model as stage, latter one will render in non-toon mode.  Specifying two imagefile will set them at floor and background.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "LIGHTCOLOR",
+        "format" : "LIGHTCOLOR|r,g,b",
+        "doc"    : "Set light color.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "LIGHTDIRECTION",
+        "format" : "LIGHTDIRECTION|x,y,z",
+        "doc"    : "Set light direction.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "LIPSYNC_START",
+        "format" : "LIPSYNC_START|model alias|phoneme string and milliseconds pairs",
+        "doc"    : "Start lip sync on the model",
+        "label"  : "command"
+    },
+    {
+        "name"   : "LIPSYNC_STOP",
+        "format" : "LIPSYNC_STOP",
+        "doc"    : "Force stop the playing lip sync.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "CAMERA",
+        "format" : "CAMERA|x,y,z|rx,ry,rz|distance|fovy|(transition period)|(model alias)|(bone name)",
+        "doc"    : "Specify camera parameters.  Give transition period in seconds for fixed speed camera moving to the specified parameter with the duration.  Giving model alias enables model-focus panning, and additional bone name to mount camera on the bone.  Also \"CAMERA|file.vmd\" enables camera motion playing.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "PLUGIN_ENABLE",
+        "format" : "PLUGIN_ENABLE|plugin name",
+        "doc"    : "Enable the plug-in.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "PLUGIN_DISABLE",
+        "format" : "PLUGIN_DISABLE|plugin name",
+        "doc"    : "Disable the plug-in.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "KEYVALUE_SET",
+        "format" : "KEYVALUE_SET|keyvalue name|value",
+        "doc"    : "Set a KeyValue variable.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "LOG_START",
+        "format" : "LOG_START",
+        "doc"    : "Start user input logging and storing until LOG_FINISH is issued.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "LOG_FINISH",
+        "format" : "LOG_FINISH",
+        "doc"    : "Stop user input logging and storing.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "LOG_UPLOAD",
+        "format" : "LOG_UPLOAD",
+        "doc"    : "Upload the logged data into the server specified by the content.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "RECOG_RECORD_START",
+        "format" : "RECOG_RECORD_START|directory",
+        "doc"    : "Start user voice recording and storing to local storage until RECOG_RECORD_STOP is issued.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "RECOG_RECORD_STOP",
+        "format" : "RECOG_RECORD_STOP",
+        "doc"    : "Stop user voice recording and storing to local storage.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "BUTTON_ADD",
+        "format" : "BUTTON_ADD|button alias|scale|x,y|image path|action|(ON or OFF for autoclose)",
+        "doc"    : "Add in-content button to the screen.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "BUTTON_DELETE",
+        "format" : "BUTTON_DELETE|button alias",
+        "doc"    : "Delete the button previously added by BUTTON_ADD.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MENU",
+        "format" : "MENU|COMMAND",
+        "doc"    : "Manage in-content menu. COMMAND can be \"ADD|alias|(backgroundImagePath)\", \"DELETE|alias\", \"SETITEM|alias|id|label_string|message_string\", or \"DELETEITEM|alias|id\".",
+        "label"  : "command"
+    },
+    {
+        "name"   : "PROMPT_SHOW",
+        "format" : "PROMPT_SHOW|main text string|selection label 1|selection label 2|...",
+        "doc"    : "Show a prompt dialogue and wait for user response.  After selection PROMPT_EVENT_SELECTED will be issued.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "INFOTEXT_FILE",
+        "format" : "INFOTEXT_FILE|text file|title label|button label[, label,..]|(scale)|(background color)|(text color)",
+        "doc"    : "Display content of the text file at full screen.  Tapping button will issue INFOTEXT_EVENT_CLOSE with tapped button label.  Colors should be given as RGB \"ff00cc\" or RGBA \"ff00ccbb\".  Text should be in UTF-8.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "INFOTEXT_STRING",
+        "format" : "INFOTEXT_STRING|text body|title label|button label[, label,..]|(scale)|(background color)|(text color)",
+        "doc"    : "Display the text body at full screen.  Tapping button will issue INFOTEXT_EVENT_CLOSE with tapped button label.  Colors should be given as RGB \"ff00cc\" or RGBA \"ff00ccbb\".  Text should be in UTF-8.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "RECOG_MODIFY",
+        "format" : "RECOG_MODIFY|COMMANDS",
+        "doc"    : "Modify recognition parameter.  COMMANDS are \"GAIN|scaling_value\", \"CHANGE_CONF|jconf_file\", \"USERDICT_SET|dictionary file\" or \"USERDICT_UNSET\".",
+        "label"  : "command"
+    },
+    {
+        "name"   : "SYNTH_START",
+        "format" : "SYNTH_START|model alias|voice alias|text string",
+        "doc"    : "Start voice synthesis of the text with the specified voice.  Lip sync will be played on the model.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "SYNTH_STOP",
+        "format" : "SYNTH_STOP|model alias",
+        "doc"    : "Stop voice sysnthesis being played on the model.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "SOUND_START",
+        "format" : "SOUND_START|sound alias|sound file",
+        "doc"    : "Start playing the audio file.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "SOUND_STOP",
+        "format" : "SOUND_STOP|sound alias",
+        "doc"    : "Stop sound playing.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "VALUE_SET",
+        "format" : "VALUE_SET|variable name|value",
+        "doc"    : "Set the variable of the name to the value.  The value can be \"minvalue|maxvalue\", in case a random value within the given numerical range will be assigned.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "VALUE_UNSET",
+        "format" : "VALUE_UNSET|variable name",
+        "doc"    : "Clear and unset the variable.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "VALUE_EVAL",
+        "format" : "VALUE_EVAL|variable name|EQ or NE or LE or LT or GE or GT|value",
+        "doc"    : "Evaluate the variable and issue VALUE_EVENT_EVAL with the evaluation result TRUE or FALSE.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "TIMER_START",
+        "format" : "TIMER_START|variable name|seconds",
+        "doc"    : "Set the count-down timer variable to the specified seconds.  Overwriting variable that does not reach 0 will issue TIMER_EVENT_CANCELLED first.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "TIMER_STOP",
+        "format" : "TIMER_STOP|variable name",
+        "doc"    : "Force cancel the count-down timer variable, and set its value to 0.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "FST_LOAD",
+        "format" : "FST_LOAD|FST file|(initial state)",
+        "doc"    : "load FST file and start playing it. Current FST will be stopped and swapped to the new FST.  When initial state is not given it is assumed to \"0\".",
+        "label"  : "command"
+    },
+    {
+        "name"   : "EXECUTE",
+        "format" : "EXECUTE|file",
+        "doc"    : "Tell OS to execute the file.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "KEY_POST",
+        "format" : "KEY_POST|window class name|key name|(ON or OFF for shift-key)|(ON or OFF for ctrl-key)|(On or OFF for alt-key)",
+        "doc"    : "Send key event to other window.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "TEXTAREA_ADD",
+        "format" : "TEXTAREA_ADD|textarea alias|width,height|size,margin,exlinespace|r,g,b,a|r,g,b,a|x,y,z|(rx,ry,rz)|(parent model alias)|(parent bone name)",
+        "doc"    : "Add a new textarea.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "TEXTAREA_SET",
+        "format" : "TEXTAREA_SET|textarea alias|text string or image file path",
+        "doc"    : "Set content to existing textarea.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "TEXTAREA_DELETE",
+        "format" : "TEXTAREA_DELETE|textarea alias",
+        "doc"    : "Delete the textarea.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "NETWORK_GET",
+        "format" : "NETWORK_GET|network get alias|URI|save file name",
+        "doc"    : "Open the URI and dump the fetched data into file.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "AVATAR_CONTROL",
+        "format" : "AVATAR_CONTROL|DISABLE or ENABLE",
+        "doc"    : "Temporary turn off/on avatar control from remote host.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MOTIONCAPTURE_START",
+        "format" : "MOTIONCAPTURE_START|model alias|filename.vmd",
+        "doc"    : "Start saving bone/face values to file.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MOTIONCAPTURE_STOP",
+        "format" : "MOTIONCAPTURE_STOP|model alias",
+        "doc"    : "Stop saving bone/face values to file.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "AVATAR_LOGSAVE_START",
+        "format" : "AVATAR_LOGSAVE_START|filename",
+        "doc"    : "Start saving messages sent from avatar control peer to file.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "AVATAR_LOGSAVE_STOP",
+        "format" : "AVATAR_LOGSAVE_STOP",
+        "doc"    : "Stop saving messages sent from avatar control peer to file.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "SPEAK_START",
+        "format" : "SPEAK_START|model alias|audio file",
+        "doc"    : "Start playing the audio file, with auto lipsync for the model.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "SPEAK_STOP",
+        "format" : "SPEAK_STOP|model alias",
+        "doc"    : "Stop speaking having invoked by SPEAK_START. Do nothing when not playing.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "SCREENENCODE_START",
+        "format" : "SCREENENCODE_START|(ID of camera, -1 to disable)|bitrate|fps|base_width|base_height|camera_zoomrate",
+        "doc"    : "Start live screen encoding and sending.  Valid for WebSocket only.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "SCREENENCODE_STOP",
+        "format" : "SCREENENCODE_STOP",
+        "doc"    : "Stop live screen encoding previously started by SCREENENCODE_START.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MOTIONCAPTURE_START",
+        "format" : "MOTIONCAPTURE_START|model alias|filename.vmd",
+        "doc"    : "Start capturing motions of the model from now and save it to the file.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MOTIONCAPTURE_STOP",
+        "format" : "MOTIONCAPTURE_STOP|model alias",
+        "doc"    : "Finish capturing motion previously started by MOTIONCAPTURE_START.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "OPEN_CONTENT",
+        "format" : "OPEN_CONTENT|relative_mdf_path",
+        "doc"    : "Newly open the .mdf file.  The current content will be closed instead.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "WINDOWFRAME",
+        "format" : "WINDOWFRAME|filename.png",
+        "doc"    : "Put window frame at screen.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "TEXTURE_SETANIMATIONRATE",
+        "format" : "TEXTURE_SETANIMATIONRATE|model alias|textureFileName|rate",
+        "doc"    : "Set animation speed of a APNG texture on a model.  The texture file name should be exactly the same as one specified within the model.  Rate of 0.0 means stop animation, 1.0 means animation at normal speed.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "MODEL_CHANGE_ASYNC",
+        "format" : "MODEL_CHANGE_ASYNC|model alias|filename.pmd",
+        "doc"    : "Asynchronous version of MODEL_CHANGE.  This would not block main thread.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "CONFIG_PARALLELSKINNING_THREADS",
+        "format" : "CONFIG_PARALLELSKINNING_THREADS|threadnum",
+        "doc"    : "Change number of CPU threads for skinning.  Default is 1 (no parallel skinning).  Large 3D models (>200k surfaces) may need to set this to 2 or more.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "CAPTION_SETSTYLE",
+        "format" : "CAPTION_SETSTYLE|style_alias|font|color|(edge1)|(edge2)|(basecolor)",
+        "doc"    : "Define a caption style.  color is (r,g,b,a) and edge is (r,g,b,a,size)",
+        "label"  : "command"
+    },
+    {
+        "name"   : "CAPTION_START",
+        "format" : "CAPTION_START|alias|style_alias|text_or_lrcFile|size|align|height|duration",
+        "doc"    : "Start showing caption of the text on screen. align should be either of CENTER, LEFT or RIGHT.  height is relative value [0-1] where bottom is 0 and top is 1.  Duration should be given in frames (30.0 = 1 sec.)",
+        "label"  : "command"
+    },
+    {
+        "name"   : "CAPTION_STOP",
+        "format" : "CAPTION_STOP|alias",
+        "doc"    : "Stop and delete the caption.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "NOTIFY_SHOW",
+        "format" : "NOTIFY_SHOW|text|(seconds)",
+        "doc"    : "Show notification text on screen, which autonmatically dissapears at 2 seconds (or seconds specified).",
+        "label"  : "command"
+    },
+    {
+        "name"   : "REMOTEKEY_CHAR",
+        "format" : "REMOTEKEY_CHAR|character",
+        "doc"    : "Send keyboard input of the specified letter.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "REMOTEKEY_DOWN",
+        "format" : "REMOTEKEY_DOWN|key_code_string",
+        "doc"    : "Send key down event of the specified code name.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "REMOTEKEY_UP",
+        "format" : "REMOTEKEY_UP|key_code_string",
+        "doc"    : "Send key up event of the specified code name.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "WEBCAM_START",
+        "format" : "WEBCAM_START",
+        "doc"    : "Start screen capture and streaming to virtual webcam named \"DirectShow Softcam\".  Needs softcam installed.  (Plugin_Webcam).",
+        "label"  : "command"
+    },
+    {
+        "name"   : "WEBCAM_STOP",
+        "format" : "WEBCAM_STOP",
+        "doc"    : "Stop virtual webcam streaming (Plugin_Webcam).",
+        "label"  : "command"
+    },
+    {
+        "name"   : "TRANSPARENT_START",
+        "format" : "TRANSPARENT_START|(color)",
+        "doc"    : "Make the app window transparent (Windows only).  Can specify additional RGB color as transparent color, else default color is used.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "TRANSPARENT_STOP",
+        "format" : "TRANSPARENT_STOP",
+        "doc"    : "Revert the app window to non-transparent (Windows only).",
+        "label"  : "command"
+    },
+    {
+        "name"   : "WINDOWFRAME_ADD",
+        "format" : "WINDOWFRAME_ADD|frame alias|image.png",
+        "doc"    : "Add a image as window frame with the specified alias.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "WINDOWFRAME_DELETE",
+        "format" : "WINDOWFRAME_DELETE|frame alias",
+        "doc"    : "Delete the window frame of the specified alias.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "WINDOWFRAME_DELETEALL",
+        "format" : "WINDOWFRAME_DELETEALL",
+        "doc"    : "Delete all window frames." 
+    }
+]
