@@ -1,165 +1,158 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "fst",
-	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#variables"
-		},
-		{
-			"include": "#strings"
-		},
-		{
-			"include": "#line_comment"
-		},
-		{
-			"include": "#numbers"
-		},
-		{
-			"include": "#numbers_block"
-		},
-		{
-			"include": "#command"
-		},
-		{
-			"include": "#regexp"
-		},
-		{
-			"include": "#files"
-		},
-		{
-			"include": "#includes"
-		}
-	],
-	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "constant.language.NULL.fst",
-				"match": "(\\<eps\\>)"
-			}]
-		},
-		"variables": {
-			"patterns": [{
-				"name": "variable.parameter.fst",
-				"match": "(\\$\\{.+?\\})"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.fst",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.fst",
-					"match": "\\\\."
-				}
-			]
-		},
-		"line_comment": {
-			"patterns": [
-				{
-					"begin": "(^[ \\t]+)?(?=#)",
-					"beginCaptures": {
-						"1": {
-							"name": "punctuation.whitespace.comment.leading.fst"
-						}
-					},
-					"end": "(?!\\G)",
-					"patterns": [
-						{
-							"begin": "#",
-							"beginCaptures": {
-								"0": {
-									"name": "punctuation.definition.comment.fst"
-								}
-							},
-							"end": "\\n",
-							"name": "comment.line.number-sign.fst"
-						}
-					]
-				}
-			]
-		},
-		"numbers": {
-			"patterns": [
-				{
-					"match": "(^\\w+)\\s+(\\w+)\\s+(\\S*)",
-					"captures": {
-						"1": {
-							"name": "entity.name.function.definition.fst"
-						},
-						"2": {
-							"name": "entity.name.function.definition.fst"
-						},
-						"3": {
-							"name": "entity.name.type.fst"
-						}
-					}
-				}
-			]
-		},
-		"numbers_block": {
-			"patterns": [
-				{
-					"match": "(^\\w+)\\s+(\\w+)?",
-					"captures": {
-						"1": {
-							"name": "entity.name.function.definition.fst"
-						},
-						"2": {
-							"name": "entity.name.function.definition.fst"
-						}
-					}
-				}
-			]
-		},
-		"command": {
-			"patterns": [
-				{
-					"match": "^(\\w+\\s+\\w+\\s+|\\s+)(\\S+)",
-					"captures": {
-						"2": {
-							"name": "entity.name.type.fst"
-						}
-					}
-				}
-			]
-		},
-		"regexp": {
-			"patterns": [{
-				"name": "string.regexp.fst",
-				"match": "(@.*?@)"
-			}]
-		},
-		"files": {
-			"patterns": [
-				{
-					"match": "\\|([^\\*\\?\\|]+\\.[A-Za-z][A-Za-z0-9]+)([ \\t\\|]|$)",
-					"captures": {
-						"1": {
-							"name": "string.unquoted.fst"
-						}
-					}
-				}
-			]
-		},
-		"includes": {
-			"patterns": [
-				{
-					"match": "^\\s*(%INCLUDE)\\((\\S*)\\)",
-					"captures": {
-						"1": {
-							"name": "keyword.definition.fst"
-						},
-						"2": {
-							"name": "string.unquoted.fst"
-						}
-					}
-				}
-			]
-		}
-	},
-	"scopeName": "source.fst"
+    "scopeName": "source.fst",
+    "patterns": [
+        {
+            "include": "#keywords"
+        },
+        {
+            "include": "#variables"
+        },
+        {
+            "include": "#strings"
+        },
+        {
+            "include": "#line_comment"
+        },
+        {
+            "include": "#event_and_command"
+        },
+        {
+            "include": "#regexp"
+        },
+        {
+            "include": "#numbers"
+        },
+        {
+            "include": "#numbers_block"
+        },
+        {
+            "include": "#files"
+        },
+        {
+            "include": "#includes"
+        }
+    ],
+    "repository": {
+        "keywords": {
+            "patterns": [
+                {
+                    "name": "constant.language.NULL.fst",
+                    "match": "(\\<eps\\>)"
+                }
+            ]
+        },
+        "variables": {
+            "patterns": [
+                {
+                    "name": "variable.parameter.fst",
+                    "match": "(\\$\\{.+?\\})"
+                }
+            ]
+        },
+        "strings": {
+            "name": "string.quoted.double.fst",
+            "begin": "\"",
+            "end": "\""
+        },
+        "line_comment": {
+            "patterns": [
+                {
+                    "begin": "(^[ \\t]+)?(?=#)",
+                    "beginCaptures": {
+                        "1": {
+                            "name": "punctuation.whitespace.comment.leading.fst"
+                        }
+                    },
+                    "end": "(?!\\G)",
+                    "patterns": [
+                        {
+                            "begin": "#",
+                            "beginCaptures": {
+                                "0": {
+                                    "name": "punctuation.definition.comment.fst"
+                                }
+                            },
+                            "end": "\\n",
+                            "name": "comment.line.number-sign.fst"
+                        }
+                    ]
+                }
+            ]
+        },
+        "event_and_command": {
+            "patterns": [
+                {
+                    "match": "(CONFIG_PARALLELSKINNING_THREADS|SCREEN_EVENT_LONGRELEASED|REMOTE_EVENT_DISCONNECTED|REMOTE_TRANSFILE_PREPARED|REMOTE_TRANSFILE_FINISHED|SCREEN_EVENT_LONGPRESSED|SCREENENCODE_EVENT_START|WINDOWFRAME_EVENT_DELETE|TEXTURE_SETANIMATIONRATE|MOTION_EVENT_ACCELERATE|SCREENENCODE_EVENT_STOP|MODEL_EVENT_UNBINDBONE|MODEL_EVENT_UNBINDFACE|MOTION_EVENT_CONFIGURE|REMOTE_EVENT_CONNECTED|CAPTION_EVENT_SETSTYLE|PROMPT_EVENT_SELECTED|TIMER_EVENT_CANCELLED|TEXTAREA_EVENT_DELETE|WINDOWFRAME_EVENT_ADD|WINDOWFRAME_DELETEALL|MODEL_EVENT_BINDBONE|MODEL_EVENT_BINDFACE|PLUGIN_EVENT_DISABLE|INFOTEXT_EVENT_CLOSE|RECOG_EVENT_OVERFLOW|AVATAR_EVENT_CONTROL|AVATAR_LOGSAVE_START|MOTION_EVENT_CHANGE|MOTION_EVENT_DELETE|LIPSYNC_EVENT_START|PLUGIN_EVENT_ENABLE|BUTTON_EVENT_DELETE|INFOTEXT_EVENT_SHOW|CAPTION_EVENT_START|MOTIONCAPTURE_START|AVATAR_LOGSAVE_STOP|MOTIONCAPTURE_START|MODEL_EVENT_CHANGE|MODEL_EVENT_DELETE|MODEL_EVENT_SELECT|MOTION_EVENT_RESET|ROTATE_EVENT_START|LIPSYNC_EVENT_STOP|RECOG_EVENT_MODIFY|TEXTAREA_EVENT_ADD|TEXTAREA_EVENT_SET|CAPTION_EVENT_STOP|RECOG_RECORD_START|MOTIONCAPTURE_STOP|SCREENENCODE_START|MOTIONCAPTURE_STOP|MODEL_CHANGE_ASYNC|WINDOWFRAME_DELETE|SUBFST_EVENT_START|ROTATE_EVENT_STOP|BUTTON_EVENT_EXEC|RECOG_EVENT_START|SYNTH_EVENT_START|SOUND_EVENT_START|VALUE_EVENT_UNSET|TIMER_EVENT_START|NETWORK_EVENT_GET|SPEAK_EVENT_START|MOTION_ACCELERATE|RECOG_RECORD_STOP|SCREENENCODE_STOP|TRANSPARENT_START|SUBFST_EVENT_STOP|MOTION_EVENT_ADD|MOVE_EVENT_START|TURN_EVENT_START|BUTTON_EVENT_ADD|RECOG_EVENT_STOP|RECOG_EVENT_AWAY|SYNTH_EVENT_STOP|SOUND_EVENT_STOP|VALUE_EVENT_EVAL|TIMER_EVENT_STOP|SPEAK_EVENT_STOP|MODEL_UNBINDBONE|MODEL_UNBINDFACE|MOTION_CONFIGURE|CAPTION_SETSTYLE|TRANSPARENT_STOP|MODEL_EVENT_ADD|MOVE_EVENT_STOP|TURN_EVENT_STOP|RECOG_EVENT_GMM|VALUE_EVENT_SET|INFOTEXT_STRING|TEXTAREA_DELETE|WINDOWFRAME_ADD|SUBFST_START_IF|MODEL_BINDBONE|MODEL_BINDFACE|LIGHTDIRECTION|PLUGIN_DISABLE|AVATAR_CONTROL|REMOTEKEY_CHAR|REMOTEKEY_DOWN|MOTION_CHANGE|MOTION_DELETE|LIPSYNC_START|PLUGIN_ENABLE|BUTTON_DELETE|INFOTEXT_FILE|CAPTION_START|CURRENT_TIME|MODEL_CHANGE|MODEL_DELETE|MOTION_RESET|ROTATE_START|LIPSYNC_STOP|KEYVALUE_SET|RECOG_MODIFY|TEXTAREA_ADD|TEXTAREA_SET|OPEN_CONTENT|CAPTION_STOP|REMOTEKEY_UP|WEBCAM_START|TIMER_RESUME|SUBFST_START|DRAGANDDROP|ROTATE_STOP|PROMPT_SHOW|SYNTH_START|SOUND_START|VALUE_UNSET|TIMER_START|NETWORK_GET|SPEAK_START|WINDOWFRAME|NOTIFY_SHOW|WEBCAM_STOP|TIMER_PAUSE|SUBFST_STOP|MENU_EVENT|MOTION_ADD|MOVE_START|TURN_START|LIGHTCOLOR|LOG_FINISH|LOG_UPLOAD|BUTTON_ADD|SYNTH_STOP|SOUND_STOP|VALUE_EVAL|TIMER_STOP|SPEAK_STOP|MODEL_ADD|MOVE_STOP|TURN_STOP|LOG_START|VALUE_SET|FST_LOAD|KEY_POST|EXECUTE|TAPPED|AVATAR|CAMERA|STAGE|MENU|KEY)",
+                    "name": "entity.name.type.fst"
+                }
+            ]
+        },
+        "regexp": {
+            "patterns": [
+                {
+                    "name": "string.regexp.fst",
+                    "match": "(@.*?@)"
+                }
+            ]
+        },
+        "numbers": {
+            "patterns": [
+                {
+                    "match": "(^\\w+)\\s+(\\w+)\\s+",
+                    "captures": {
+                        "1": {
+                            "name": "entity.name.function.definition.fst"
+                        },
+                        "2": {
+                            "name": "entity.name.function.definition.fst"
+                        }
+                    }
+                }
+            ]
+        },
+        "numbers_block": {
+            "patterns": [
+                {
+                    "match": "(^\\w+)\\s+(\\w+)?",
+                    "captures": {
+                        "1": {
+                            "name": "entity.name.function.definition.fst"
+                        },
+                        "2": {
+                            "name": "entity.name.function.definition.fst"
+                        }
+                    }
+                }
+            ]
+        },
+        "files": {
+            "patterns": [
+                {
+                    "match": "\\|([^\\*\\?\\|]+\\.[A-Za-z][A-Za-z0-9]+)([ \\t\\|]|$)",
+                    "captures": {
+                        "1": {
+                            "name": "string.unquoted.fst"
+                        }
+                    },
+                    "include": "#strings"
+                }
+            ]
+        },
+        "includes": {
+            "patterns": [
+                {
+                    "match": "^\\s*(%INCLUDE)\\((\\S*)\\)",
+                    "captures": {
+                        "1": {
+                            "name": "keyword.definition.fst"
+                        },
+                        "2": {
+                            "name": "string.unquoted.fst"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "name": "fst"
 }

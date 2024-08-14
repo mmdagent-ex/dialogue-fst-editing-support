@@ -943,6 +943,49 @@
     {
         "name"   : "WINDOWFRAME_DELETEALL",
         "format" : "WINDOWFRAME_DELETEALL",
-        "doc"    : "Delete all window frames." 
+        "doc"    : "Delete all window frames.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "TIMER_PAUSE",
+        "format" : "TIMER_PAUSE|timer alias",
+        "doc"    : "Pause the timer. If issued multiple times for a timer they will be all counted.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "TIMER_RESUME",
+        "format" : "TIMER_RESUME|timer alias",
+        "doc"    : "Resume the paused the timer. For multiple pause, resume of the same time is required.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "SUBFST_START",
+        "format" : "SUBFST_START|fst alias|fst file",
+        "doc"    : "Start sub-fst execution.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "SUBFST_START_IF",
+        "format" : "SUBFST_START_IF|fst alias|fst file",
+        "doc"    : "Start sub-fst execution, or will not start if the fst file does not exist.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "SUBFST_EVENT_START",
+        "format" : "SUBFST_EVENT_START|fst alias",
+        "doc"    : "Event that will be issued when the sub-fst starts by SUBFST_START or SUBFST_START_IF.",
+        "label"  : "event"
+    },
+    {
+        "name"   : "SUBFST_STOP",
+        "format" : "SUBFST_STOP|fst alias",
+        "doc"    : "Stop and terminate the sub-fst process.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "SUBFST_EVENT_STOP",
+        "format" : "SUBFST_EVENT_STOP|fst alias",
+        "doc"    : "Event that will be issued when the sub-fst ends by SUBFST_STOP.",
+        "label"  : "event"
     }
 ]
