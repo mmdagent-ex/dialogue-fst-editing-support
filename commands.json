@@ -987,5 +987,17 @@
         "format" : "SUBFST_EVENT_STOP|fst alias",
         "doc"    : "Event that will be issued when the sub-fst ends by SUBFST_STOP.",
         "label"  : "event"
+    },
+    {
+        "name"   : "TIMER_CANCEL",
+        "format" : "TIMER_CANCEL|timer alias",
+        "doc"    : "Force to terminate the specified timer if exists. The terminated timer does not output TIMER_EVENT_STOP, and always output TIMER_EVENT_CANCELLED even if the specified timer does not exists.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "TIMER_EVENT_CANCELLED",
+        "format" : "TIMER_EVENT_CANCELLED|timer alias",
+        "doc"    : "Event that will be issued after processing TIMER_CANCEL.  This is always issued after TIMER_CANCEL regardless of the time exists or not.",
+        "label"  : "event"
     }
 ]

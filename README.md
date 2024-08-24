@@ -77,3 +77,9 @@ Updated version.
     - TIMER_PAUSE, TIMER_RESUME
 
 - Improved highlight algorithm
+
+### 1.3.1
+
+- Added missing messages
+  - TIMER_CANCEL
+  - TIMER_EVENT_CANCELLED
