@@ -83,3 +83,9 @@ Updated version.
 - Added missing messages
   - TIMER_CANCEL
   - TIMER_EVENT_CANCELLED
+
+### 1.3.2
+
+- Added new messages
+  - TEXTAREA_HIDE, TEXTAREA_SHOW
+  - TEXTAREA_EVENT_HIDE, TEXTAREA_EVENT_SHOW

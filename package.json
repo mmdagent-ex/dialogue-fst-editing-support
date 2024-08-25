@@ -2,7 +2,7 @@
     "name": "dialogue-fst-editing-support",
     "displayName": "Dialogue FST editing support",
     "description": "Supports .fst file editing for MMDAgent-EX.",
-    "version": "1.3.1",
+    "version": "1.3.2",
     "publisher": "MMDAgent-EX",
     "icon": "images/icon.png",
     "engines": {

@@ -999,5 +999,29 @@
         "format" : "TIMER_EVENT_CANCELLED|timer alias",
         "doc"    : "Event that will be issued after processing TIMER_CANCEL.  This is always issued after TIMER_CANCEL regardless of the time exists or not.",
         "label"  : "event"
+    },
+    {
+        "name"   : "TEXTAREA_HIDE",
+        "format" : "TEXTAREA_HIDE|textarea alias",
+        "doc"    : "Hide the specified textarea.  The content of the current text area freeze and does not progress.  It still accepts TEXTAREA_SET while hiding. No effect on already hided one.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "TEXTAREA_EVENT_HIDE",
+        "format" : "TEXTAREA_EVENT_HIDE|textarea alias",
+        "doc"    : "Event that will be issued after processing TEXTAREA_HIDE.",
+        "label"  : "event"
+    },
+    {
+        "name"   : "TEXTAREA_SHOW",
+        "format" : "TEXTAREA_SHOW|textarea alias",
+        "doc"    : "make the hided textarea show again. Content will start progress.  No effect on alread shown one.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "TEXTAREA_EVENT_SHOW",
+        "format" : "TEXTAREA_EVENT_SHOW|textarea alias",
+        "doc"    : "Event that will be issued after processing TEXTAREA_SHOW.",
+        "label"  : "event"
     }
 ]
