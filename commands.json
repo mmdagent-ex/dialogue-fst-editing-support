@@ -365,6 +365,12 @@
         "label"  : "event"
     },
     {
+        "name"   : "AVATAR_EVENT_IDLE",
+        "format" : "AVATAR_EVENT_IDLE|START or STOP",
+        "doc"    : "Event issued for avatar idle status.  When no message has been sent from remote for a while, AVATAR_EVENT_IDLE|START will be issued.  After that, if any message has arrived, AVATAR_EVENT_IDLE|STOP will be issued. (Plugin_Remote)",
+        "label"  : "event"
+    },
+    {
         "name"   : "SPEAK_EVENT_START",
         "format" : "SPEAK_EVENT_START|model alias",
         "doc"    : "Event issued when audio speaking has been started by SPEAK_START. (Plugin_Remote)",
