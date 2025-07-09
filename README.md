@@ -94,3 +94,7 @@ Updated version.
 
 - Added missing messages
   - AVATAR_EVENT_IDLE|START, AVATAR_EVENT_IDLE|STOP
+
+### 1.3.4
+
+- Fix bug: latest commands are not highlighted
