@@ -1029,5 +1029,59 @@
         "format" : "TEXTAREA_EVENT_SHOW|textarea alias",
         "doc"    : "Event that will be issued after processing TEXTAREA_SHOW.",
         "label"  : "event"
+    },
+    {
+        "name"   : "WINDOWOVERLAY_ADD",
+        "format" : "WINDOWOVERLAY_ADD|alias|imagefile.png|rwidth|rheight|ANCHOR|offset",
+        "doc"    : "Show an image onto the screen.  Aspect will be forced kept.  rwidth and rheight are [0..1] relative to window size. ANCHOR is one of TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT, CENTER.  offset is also relative size from the anchor point.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "WINDOWOVERLAY_DELETE",
+        "format" : "WINDOWOVERLAY_DELETE|alias",
+        "doc"    : "Delete the window overlay.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "WINDOWOVERLAY_DELETEALL",
+        "format" : "WINDOWOVERLAY_DELETEALL",
+        "doc"    : "Delete all window frames.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "WINDOWOVERLAY_HIDE",
+        "format" : "WINDOWOVERLAY_HIDE|alias",
+        "doc"    : "Hide the specified overlay image shown on the screen.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "WINDOWOVERLAY_SHOW",
+        "format" : "WINDOWOVERLAY_SHOW|alias",
+        "doc"    : "Show the hided overlay image again to screen.",
+        "label"  : "command"
+    },
+    {
+        "name"   : "WINDOWOVERLAY_EVENT_ADD",
+        "format" : "WINDOWOVERLAY_EVENT_ADD|alias",
+        "doc"    : "Event issued when a window overlay has been added.",
+        "label"  : "event"
+    },
+    {
+        "name"   : "WINDOWOVERLAY_EVENT_DELETE",
+        "format" : "WINDOWOVERLAY_EVENT_DELETE|alias",
+        "doc"    : "Event issued when a window overlay has been deleted.",
+        "label"  : "event"
+    },
+    {
+        "name"   : "WINDOWOVERLAY_EVENT_HIDE",
+        "format" : "WINDOWOVERLAY_EVENT_HIDE|alias",
+        "doc"    : "Event issued when a window overlay has been made hidden.",
+        "label"  : "event"
+    },
+    {
+        "name"   : "WINDOWOVERLAY_EVENT_SHOW",
+        "format" : "WINDOWOVERLAY_EVENT_SHOW|alias",
+        "doc"    : "Event issued when a window overlay has been made shown.",
+        "label"  : "event"
     }
 ]

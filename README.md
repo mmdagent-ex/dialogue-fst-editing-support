@@ -98,3 +98,12 @@ Updated version.
 ### 1.3.4
 
 - Fix bug: latest commands are not highlighted
+
+### 1.3.5
+
+- Added
+  - WINDOWOVERLAY_ADD
+  - WINDOWOVERLAY_DELETE
+  - WINDOWOVERLAY_DELETEALL
+  - WINDOWOVERLEY_HIDE
+  - WINDOWOVERLEY_SHOW
